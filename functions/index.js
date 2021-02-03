@@ -12,8 +12,8 @@ exports.getShopData = functions.https.onRequest(async (req, res) => {
     // const writeResult = await admin.firestore().collection('messages').add({original: original});
     // Send back a message that we've successfully written the message
 
-    const response = await fetch('https://447c649ad8e1d0d93d6daf2fde37e9bf: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@carbonforest.myshopify.com/admin/api/2021-01/customers.json')
-    const resData = await response.json()
+    const response = await fetch(`https://${functions.config().shopify.key}:${functions.config().shopify.password}@carbonforest.myshopify.com/admin/api/2021-01/customers.json`);
+    const resData = await response.json();
 
     res.json({ ...resData });
 });
