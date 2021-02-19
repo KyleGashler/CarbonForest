@@ -1,22 +1,16 @@
-import React, { useEffect } from "react";
-import { useStoreState, useStoreActions } from "easy-peasy";
+import React from "react";
+import { useStoreState } from "easy-peasy";
 import Header from './Header';
 import Login from './login';
 import Dashboard from './Dashboard';
+import qs from 'qs';
 
 export default function Authorizer() {
-    const userEmail = useStoreState((state) => state.userEmail);
-    //const fetchDataBasedOnEmail = useActions(actions => actions.fetchDataBasedOnEmail);
-    const fetchTest = useStoreActions(actions => actions.fetchTest);
-
-    useEffect(() => {
-        if (userEmail) {
-            //   fetchDataBasedOnEmail();
-            console.log("We have an email!", userEmail);
-        }
-        fetchTest();
-        // eslint-disable-next-line
-    }, []);
+    let userEmail = useStoreState((state) => state.userEmail);
+    if (!userEmail) {
+        console.log("no user email");
+        //userEmail = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).cust;
+    }
 
 
     if (userEmail) {

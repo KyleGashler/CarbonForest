@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from '../images/thumb-carbon.png';
 import Header from './Header';
+import { useStoreActions } from "easy-peasy";
 
 const Dashboard = () => {
+
+    const saveCustInfo = useStoreActions(actions => actions.saveCustInfo);
+
+    useEffect(() => {
+        saveCustInfo();
+    });
 
     return (
         <div className="App">

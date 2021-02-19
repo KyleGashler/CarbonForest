@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,7 +10,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { useStoreActions, useStoreState } from "easy-peasy";
+import { useStoreActions } from "easy-peasy";
 
 
 function Copyright() {
@@ -50,7 +50,7 @@ export default function SignIn() {
     const classes = useStyles();
 
     let email = "";
-    const fetchTest = useStoreActions((actions) => actions.fetchTest);
+    const addEmailToStore = useStoreActions((actions) => actions.addEmailToStore);
 
     return (
         <Container component="main" maxWidth="xs">
@@ -81,7 +81,7 @@ export default function SignIn() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={() => fetchTest(email)}
+                        onClick={() => addEmailToStore(email)}
                     >
                         Sign In
                     </Button>
