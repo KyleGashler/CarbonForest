@@ -11,12 +11,10 @@ export default {
     fetchDataBasedOnEmail: action((state, customers) => {
         if (customers) {
             for (let cust of customers) {
-                console.log(cust)
                 if (cust.email === state.userEmail) {
                     state.customer = cust;
                 }
             }
-
         }
 
         // update State with all the vals from fb
@@ -31,10 +29,8 @@ export default {
 
         const response = await fetch('https://us-central1-carbon-forest-b3740.cloudfunctions.net/getShopData');
         const data = await response.json();
-        console.log(data)
 
-
-        // actions.fetchDataBasedOnEmail(data.customers);
+        actions.fetchDataBasedOnEmail(data.customers);
 
     }),
 }

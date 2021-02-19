@@ -1,14 +1,21 @@
 import React, { useEffect } from "react";
 import logo from '../images/thumb-carbon.png';
 import Header from './Header';
-import { useStoreActions } from "easy-peasy";
+import { useStoreActions, useStoreState } from "easy-peasy";
+
 
 const Dashboard = () => {
-
+    const user = useStoreState((state) => state.customer);
     const saveCustInfo = useStoreActions(actions => actions.saveCustInfo);
 
-    useEffect(() => {
+    if (!user.first_name) {
         saveCustInfo();
+    }
+
+    useEffect(() => {
+        if (!user.first_name) {
+            saveCustInfo();
+        }
     });
 
     return (
@@ -17,8 +24,8 @@ const Dashboard = () => {
             <div>
                 <img src={logo} className="App-logo" alt="logo" />
                 <p>
-                    CARBON FOREST FOREVER!!!
-                    </p>
+                    Hello! {user.first_name}
+                </p>
                 <a
                     className="App-link"
                     href="https://carbonforest.org"
