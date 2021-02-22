@@ -4,10 +4,12 @@ import Header from './Header';
 import Login from './login';
 import Dashboard from './Dashboard';
 import ErrorModule from './error';
+import LoadingBar from './LoadingBar';
 
 export default function Authorizer() {
     let userEmail = useStoreState((state) => state.userEmail);
     const customer = useStoreState((state) => state.customer);
+    const requestInFlight = useStoreState((state) => state.requestInFlight);
     const addEmailToStore = useStoreActions((actions) => actions.addEmailToStore);
     const saveCustInfo = useStoreActions(actions => actions.saveCustInfo);
 
@@ -34,6 +36,17 @@ export default function Authorizer() {
                 </div>
             </div>
 
+        )
+    } else if (requestInFlight) {
+        // set email failure modal
+        console.log("requestINFlight", requestInFlight);
+        return (
+            <div>
+                <Header />
+                <div className="content">
+                    <LoadingBar />
+                </div>
+            </div>
         )
     } else if (userEmail) {
         // set email failure modal
