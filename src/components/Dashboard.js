@@ -1,22 +1,22 @@
-import React, { useEffect } from "react";
+import React from "react";
 import logo from '../images/thumb-carbon.png';
 import Header from './Header';
-import { useStoreActions, useStoreState } from "easy-peasy";
+import { useStoreState } from "easy-peasy";
 
 
 const Dashboard = () => {
     const user = useStoreState((state) => state.customer);
-    const saveCustInfo = useStoreActions(actions => actions.saveCustInfo);
+    // const saveCustInfo = useStoreActions(actions => actions.saveCustInfo);
 
-    if (!user.first_name) {
-        saveCustInfo();
-    }
+    // if (!user.first_name) {
+    //     saveCustInfo();
+    // }
 
-    useEffect(() => {
-        if (!user.first_name) {
-            saveCustInfo();
-        }
-    });
+    // useEffect(() => {
+    //     if (!user.first_name) {
+    //         saveCustInfo();
+    //     }
+    // });
 
     return (
         <div className="App">

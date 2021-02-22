@@ -7,6 +7,7 @@ import { action, thunk } from 'easy-peasy';
 export default {
     userEmail: "",
     customer: {},
+    error: "",
     // Actions
     fetchDataBasedOnEmail: action((state, customers) => {
         if (customers) {

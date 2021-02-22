@@ -51,7 +51,7 @@ export default function SignIn() {
 
     let email = "";
     const addEmailToStore = useStoreActions((actions) => actions.addEmailToStore);
-
+    console.log(email)
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />
