@@ -38,8 +38,6 @@ export default function Authorizer() {
 
         )
     } else if (requestInFlight) {
-        // set email failure modal
-        console.log("requestINFlight", requestInFlight);
         return (
             <div>
                 <Header />
@@ -49,8 +47,6 @@ export default function Authorizer() {
             </div>
         )
     } else if (userEmail) {
-        // set email failure modal
-
         return (
             <div>
                 <Header />
