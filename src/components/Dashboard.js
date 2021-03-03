@@ -1,10 +1,11 @@
 import React from "react";
 import { useStoreState } from "easy-peasy";
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { SocialIcon } from 'react-social-icons';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import map from '../images/map.png';
+import Image from 'material-ui-image'
 
 import dashboardBackground from '../images/dashboardBackground.png'; // Import using relative path
 
@@ -15,14 +16,12 @@ const useStyles = makeStyles((theme) => ({
     },
     top: {
         textAlign: 'center',
-        color: theme.palette.text.secondary,
         backgroundImage: `url(${dashboardBackground})`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center center",
         backgroundSize: "cover",
         backgroundAttachment: "fixed",
         height: 1200,
-        // backgroundColor: 'red'
     },
     paper: {
         textAlign: 'left',
@@ -57,8 +56,51 @@ const useStyles = makeStyles((theme) => ({
         background: "white",
         height: "4px",
     },
+    separator2: {
+        color: "white",
+        display: "inline-block",
+        width: "75%",
+        background: "#E6600E",
+        height: "5px",
+    },
     share: {
-        paddingTop: "120px"
+        paddingTop: "120px",
+        lineHeight: "80%",
+        fontSize: "12pt"
+    },
+    community: {
+        textAlign: "left",
+        paddingTop: "50px",
+        backgroundColor: "gray",
+        paddingLeft: "20px",
+        paddingRight: "20px",
+        fontSize: "50pt",
+        color: "white"
+    },
+    map: {
+        backgroundImage: `url(${map})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center center",
+        backgroundSize: "1150px",
+        height: 340,
+
+    },
+    cfStats: {
+        textAlign: "center",
+        fontSize: "24pt",
+    },
+    yours: {
+        textAlign: "left",
+        paddingTop: "50px",
+        backgroundColor: "#d3d3d3",
+        paddingLeft: "20px",
+        paddingRight: "20px",
+        fontSize: "50pt",
+
+    },
+    yourTrees: {
+        fontSize: "16pt",
+        textAlign: "center",
     }
 }));
 
@@ -114,10 +156,42 @@ const Dashboard = () => {
                     </div>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <Paper className={classes.paper}>xs=12 sm=6</Paper>
+                    <div className={classes.community}>
+                        <h3>Community impact.</h3>
+                        <hr className={classes.separator2}></hr>
+                        <div className={classes.map}></div>
+                        <div className={classes.cfStats}>
+                            <h3 className={classes.cfStats}>4588 TREES PLANTED</h3>
+                            <h3 className={classes.cfStats}>75 MEMBERS</h3>
+                            <SocialIcon url="https://www.facebook.com/sharer/sharer.php?u=carbonforest.org" network="facebook" bgColor="white" />
+                            <SocialIcon url="https://twitter.com/intent/tweet?url=carbonforest.org&text=" network="twitter" bgColor="white" />
+                            <SocialIcon url="https://www.instagram.com/carbon_forest/?hl=en" network="instagram" bgColor="white" />
+                            <SocialIcon url="mailto:caitlin@carbonforest.org?&subject=&cc=&bcc=&body=carbonforest.org%0A" network="email" bgColor="white" />
+                            <div>woohoo! share with your friends.</div>
+                        </div>
+                    </div>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <Paper className={classes.paper}>xs=12 sm=6</Paper>
+                    <div className={classes.yours}>
+                        <h3>Your impact.</h3>
+                        <hr className={classes.separator2}></hr>
+                        <p className={classes.yourTrees}>Your trees are planted in Colorado! Check out your trees:</p>
+                        <Grid container spacing={3} >
+                            <Grid item xs={12} sm={4}>x</Grid>
+                            <Grid item xs={12} sm={4}>x</Grid>
+                            <Grid item xs={12} sm={4}>x</Grid>
+                        </Grid>
+                        <Grid container spacing={2} >
+                            <Grid item xs={12} sm={6}>x</Grid>
+                            <Grid item xs={12} sm={6}>x</Grid>
+
+                        </Grid>
+                        <SocialIcon url="https://www.facebook.com/sharer/sharer.php?u=carbonforest.org" network="facebook" bgColor="white" />
+                        <SocialIcon url="https://twitter.com/intent/tweet?url=carbonforest.org&text=" network="twitter" bgColor="white" />
+                        <SocialIcon url="https://www.instagram.com/carbon_forest/?hl=en" network="instagram" bgColor="white" />
+                        <SocialIcon url="mailto:caitlin@carbonforest.org?&subject=&cc=&bcc=&body=carbonforest.org%0A" network="email" bgColor="white" />
+                        <div>woohoo! share with your friends.</div>
+                    </div>
                 </Grid>
             </Grid>
         </div>
