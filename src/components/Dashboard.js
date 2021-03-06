@@ -10,7 +10,6 @@ import TreeInfoPannel from './TreeInfoPannel';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
         fontFamily: "Fraunces, serif"
     },
 }));
@@ -22,7 +21,7 @@ const Dashboard = () => {
     return (
 
         <div className={classes.root}>
-            <Grid container spacing={3} >
+            <Grid container  >
                 <MainPannel></MainPannel>
                 <MapPannel></MapPannel>
                 <TreeInfoPannel></TreeInfoPannel>

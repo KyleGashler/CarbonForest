@@ -64,7 +64,7 @@ export default function FirstPannel() {
                     <h1 className={classes.welcome}>
                         welcome, {user.first_name}.
                         </h1>
-                    <Grid container spacing={3} className={classes.treeInfo}>
+                    <Grid container className={classes.treeInfo}>
                         <Grid item xs={12} sm={4}>
                             <div className={classes.paper}>
                                 <p className={classes.underlined}>66</p>

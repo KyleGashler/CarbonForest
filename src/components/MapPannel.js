@@ -15,14 +15,9 @@ const useStyles = makeStyles({
         background: "#E6600E",
         height: "5px",
     },
-    share: {
-        paddingTop: "120px",
-        lineHeight: "80%",
-        fontSize: "12pt"
-    },
     community: {
         textAlign: "left",
-        paddingTop: "50px",
+        paddingTop: "20px",
         backgroundColor: "gray",
         paddingLeft: "20px",
         paddingRight: "20px",
@@ -35,7 +30,6 @@ const useStyles = makeStyles({
         backgroundPosition: "center center",
         backgroundSize: "1150px",
         height: 340,
-
     },
     cfStats: {
         textAlign: "center",
@@ -50,7 +44,7 @@ export default function FirstPannel() {
 
         <Grid item xs={12} sm={6}>
             <div className={classes.community}>
-                <h3>Community impact.</h3>
+                <p>Community impact.</p>
                 <hr className={classes.separator2}></hr>
                 <div className={classes.map}></div>
                 <div className={classes.cfStats}>
