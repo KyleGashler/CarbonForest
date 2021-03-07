@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
 import { SocialIcon } from 'react-social-icons';
-import map from '../images/map.png';
+import map from '../images/TreeMap.png';
 
 
 const useStyles = makeStyles({
@@ -28,8 +28,8 @@ const useStyles = makeStyles({
         backgroundImage: `url(${map})`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center center",
-        backgroundSize: "1150px",
-        height: 340,
+        backgroundSize: "900px",
+        height: 500,
     },
     cfStats: {
         textAlign: "center",
