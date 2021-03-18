@@ -16,12 +16,14 @@ const useStyles = makeStyles({
         backgroundSize: "cover",
         backgroundAttachment: "fixed",
         height: 1200,
+
     },
     paper: {
         textAlign: 'left',
         color: "white",
         background: "rgba(76, 175, 80, 0.0)",
-        lineHeight: "1%"
+        paddingLeft: "10%",
+        paddingRight: "10%",
     },
     titles: {
         paddingTop: "205px",
@@ -32,16 +34,15 @@ const useStyles = makeStyles({
         fontWeight: "900"
     },
     treeInfo: {
-        paddingLeft: "420px",
-        paddingRight: "420px",
-        fontSize: "18pt",
+        paddingLeft: "30%",
+        paddingRight: "30%",
+        fontSize: "16pt",
         color: "white",
-
     },
     underlined: {
-        fontSize: "60pt",
-        fontWeight: "700"
-
+        fontSize: "50pt",
+        fontWeight: "700",
+        lineHeight: "1%"
     },
     separator: {
         color: "white",
@@ -50,6 +51,9 @@ const useStyles = makeStyles({
         background: "white",
         height: "4px",
     },
+    share: {
+        paddingTop: "30px"
+    }
 });
 
 export default function FirstPannel() {
@@ -69,8 +73,7 @@ export default function FirstPannel() {
                             <div className={classes.paper}>
                                 <p className={classes.underlined}>66</p>
                                 <hr className={classes.separator}></hr>
-                                <p>Trees planted</p>
-                                <p>to date.</p>
+                                <p>Trees planted to date.</p>
                                 <p className={classes.share}>SHARE YOUR PROGRESS</p>
                                 <SocialIcon url="https://www.facebook.com/sharer/sharer.php?u=carbonforest.org" network="facebook" bgColor="white" />
                                 <SocialIcon url="https://twitter.com/intent/tweet?url=carbonforest.org&text=" network="twitter" bgColor="white" />
@@ -84,17 +87,14 @@ export default function FirstPannel() {
                             <div className={classes.paper}>
                                 <p className={classes.underlined}>614</p>
                                 <hr className={classes.separator}></hr>
-                                <p>Trees to go to erase</p>
-                                <p>your carbon footprint.</p>
+                                <p>Trees to go to erase your carbon footprint.</p>
                             </div>
                         </Grid>
                         <Grid item xs={12} sm={4}>
                             <div className={classes.paper}>
                                 <p className={classes.underlined}>9.7%</p>
                                 <hr className={classes.separator}></hr>
-                                <p>Of your lifetime carbon</p>
-                                <p>footprint erased.</p>
-
+                                <p>Of your lifetime carbon footprint erased.</p>
                             </div>
                         </Grid>
                     </Grid>

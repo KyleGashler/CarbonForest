@@ -21,7 +21,7 @@ const Dashboard = () => {
     return (
 
         <div className={classes.root}>
-            <Grid container  >
+            <Grid container>
                 <MainPannel></MainPannel>
                 <MapPannel></MapPannel>
                 <TreeInfoPannel></TreeInfoPannel>
