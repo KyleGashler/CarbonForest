@@ -10,10 +10,10 @@ export default {
     error: "",
     requestInFlight: false,
     // Actions
-    fetchDataBasedOnEmail: action((state, customers) => {
+    loadCustomerState: action((state, customers) => {
         if (customers) {
             for (let cust of customers) {
-                if (cust.email === state.userEmail) {
+                if (cust.email.trim().toLowerCase() === state.userEmail) {
                     state.customer = cust;
                 }
             }
@@ -22,8 +22,9 @@ export default {
         // update State with all the vals from fb
     }),
     addEmailToStore: action((state, email) => {
-        console.log("Updating the Email")
-        state.userEmail = email;
+        if (email) {
+            state.userEmail = email.trim().toLowerCase();
+        }
     }),
     toggleRequestInFlight: action((state, val) => {
         console.log("Updating the Email")
@@ -36,7 +37,7 @@ export default {
         const response = await fetch('https://us-central1-carbon-forest-b3740.cloudfunctions.net/getShopData');
         const data = await response.json();
 
-        actions.fetchDataBasedOnEmail(data.customers);
+        actions.loadCustomerState(data.customers);
         actions.toggleRequestInFlight(false);
     }),
 }
