@@ -1,8 +1,5 @@
 import { action, thunk } from 'easy-peasy';
 
-
-
-
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     userEmail: "",
@@ -10,16 +7,8 @@ export default {
     error: "",
     requestInFlight: false,
     // Actions
-    loadCustomerState: action((state, customers) => {
-        if (customers) {
-            for (let cust of customers) {
-                if (cust.email.trim().toLowerCase() === state.userEmail) {
-                    state.customer = cust;
-                }
-            }
-        }
-
-        // update State with all the vals from fb
+    loadCustomerState: action((state, data) => {
+        state.customer = data;
     }),
     addEmailToStore: action((state, email) => {
         if (email) {
@@ -31,14 +20,15 @@ export default {
         state.requestInFlight = val;
     }),
     //thunks
-    saveCustInfo: thunk(async (actions) => {
+    saveCustInfo: thunk(async (actions, userEmail) => {
         actions.toggleRequestInFlight(true);
 
-        const response = await fetch('https://us-central1-carbon-forest-b3740.cloudfunctions.net/getShopData');
+        const encodedEmail = encodeURIComponent(userEmail);
+        console.log("encodedEmail", encodedEmail);
+        const response = await fetch(`https://profile.carbonforest.org/appData?email=${encodedEmail}`);
         const data = await response.json();
 
-        actions.loadCustomerState(data.customers);
+        actions.loadCustomerState(data);
         actions.toggleRequestInFlight(false);
     }),
 }
-

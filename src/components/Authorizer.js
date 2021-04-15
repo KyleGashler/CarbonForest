@@ -21,7 +21,7 @@ export default function Authorizer() {
         }
     } else {
         if (!customer.first_name) {
-            saveCustInfo();
+            saveCustInfo(userEmail);
         }
     }
 

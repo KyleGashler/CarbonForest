@@ -1,6 +1,12 @@
 {
   "hosting": {
     "public": "build",
+    "rewrites": [
+      {
+        "source": "/appData",
+        "function": "getShopData"
+      }
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",
