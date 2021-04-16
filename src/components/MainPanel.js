@@ -5,7 +5,8 @@ import { useStoreState } from "easy-peasy";
 import Grid from '@material-ui/core/Grid';
 import { SocialIcon } from 'react-social-icons';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import dashboardBackground from '../images/dashboardBackground.png'; // Import using relative path
+import dashboardBackground from '../images/dashboardBackground.png';
+import calcTrees from '../utils/calcTrees';
 
 const useStyles = makeStyles({
     top: {
@@ -16,7 +17,6 @@ const useStyles = makeStyles({
         backgroundSize: "cover",
         backgroundAttachment: "fixed",
         height: 1200,
-
     },
     paper: {
         textAlign: 'left',
@@ -56,9 +56,13 @@ const useStyles = makeStyles({
     }
 });
 
+
+
 export default function FirstPannel() {
-    const user = useStoreState((state) => state.customer);
+    const customer = useStoreState((state) => state.customer);
     const classes = useStyles();
+    let treesPlanted = calcTrees(customer.created_at, customer.product);
+    treesPlanted = Math.ceil(treesPlanted);
 
     return (
 
@@ -66,12 +70,12 @@ export default function FirstPannel() {
             <div className={classes.top}>
                 <div className={classes.titles}>
                     <h1 className={classes.welcome}>
-                        welcome, {user.first_name}.
+                        welcome, {customer.first_name}.
                         </h1>
                     <Grid container className={classes.treeInfo}>
                         <Grid item xs={12} sm={4}>
                             <div className={classes.paper}>
-                                <p className={classes.underlined}>66</p>
+                                <p className={classes.underlined}>{treesPlanted}</p>
                                 <hr className={classes.separator}></hr>
                                 <p>Trees planted to date.</p>
                                 <p className={classes.share}>SHARE YOUR PROGRESS</p>
@@ -85,14 +89,14 @@ export default function FirstPannel() {
                         </Grid>
                         <Grid item xs={12} sm={4}>
                             <div className={classes.paper}>
-                                <p className={classes.underlined}>614</p>
+                                <p className={classes.underlined}>{680 - treesPlanted}</p>
                                 <hr className={classes.separator}></hr>
                                 <p>Trees to go to erase your carbon footprint.</p>
                             </div>
                         </Grid>
                         <Grid item xs={12} sm={4}>
                             <div className={classes.paper}>
-                                <p className={classes.underlined}>9.7%</p>
+                                <p className={classes.underlined}>{Math.ceil(treesPlanted / 680)}%</p>
                                 <hr className={classes.separator}></hr>
                                 <p>Of your lifetime carbon footprint erased.</p>
                             </div>
