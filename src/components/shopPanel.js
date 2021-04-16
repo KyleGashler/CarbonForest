@@ -87,21 +87,28 @@ export default function ShopPanel() {
                         </ArrowBackIosIcon>
                     </Grid>
                     <Grid item xs={3}>
-                        <div className={classes.hat}></div>
+                        <a href="https://carbonforest.org/products/carbon-forest-hat?_pos=1&_sid=100118769&_ss=r">
+                            <div className={classes.hat}></div>
+                        </a>
+
                         <div className={classes.productDetail}>
                             <p>Carbon Forest Hat</p>
                             <p>$14</p>
                         </div>
                     </Grid>
                     <Grid item xs={3}>
-                        <div className={classes.hat}></div>
+                        <a href="https://carbonforest.org/products/carbon-forest-hat?_pos=1&_sid=100118769&_ss=r">
+                            <div className={classes.hat}></div>
+                        </a>
                         <div className={classes.productDetail}>
                             <p>Carbon Forest Hat</p>
                             <p>$14</p>
                         </div>
                     </Grid>
                     <Grid item xs={3}>
-                        <div className={classes.hat}></div>
+                        <a href="https://carbonforest.org/products/carbon-forest-hat?_pos=1&_sid=100118769&_ss=r">
+                            <div className={classes.hat}></div>
+                        </a>
                         <div className={classes.productDetail}>
                             <p>Carbon Forest Hat</p>
                             <p>$14</p>
@@ -112,7 +119,6 @@ export default function ShopPanel() {
                             style={{ color: "#E6600E" }}
                             fontSize="large"
                         >
-
                         </ArrowForwardIosIcon>
                     </Grid>
                 </Grid>

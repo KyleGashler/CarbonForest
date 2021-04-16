@@ -58,7 +58,7 @@ export default function FirstPannel() {
                 <hr className={classes.separator2}></hr>
                 <div className={classes.map}></div>
                 <div className={classes.cfStats}>
-                    <h3 className={classes.cfStats}>4588 TREES PLANTED</h3>
+                    <h3 className={classes.cfStats}>2501 TREES PLANTED</h3>
                     <h3 className={classes.cfStats}>75 MEMBERS</h3>
                     <Grid container className={classes.social}>
                         <Grid item xs={12} sm={6}>
