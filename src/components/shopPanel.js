@@ -35,6 +35,9 @@ const useStyles = makeStyles({
         backgroundSize: "550px",
         height: 420,
         paddingTop: "55px",
+        '&:hover': {
+            opacity: "0.5",
+        },
     },
     tee: {
         backgroundImage: `url(${tee})`,
@@ -43,7 +46,9 @@ const useStyles = makeStyles({
         backgroundSize: "500px",
         height: 400,
         paddingTop: "55px",
-
+        '&:hover': {
+            opacity: "0.5",
+        },
     },
     sweat: {
         backgroundImage: `url(${sweat})`,
@@ -52,7 +57,9 @@ const useStyles = makeStyles({
         backgroundSize: "500px",
         height: 400,
         paddingTop: "55px",
-
+        '&:hover': {
+            opacity: "0.5",
+        },
     },
     invite: {
         paddingTop: "25px",
@@ -106,7 +113,7 @@ export default function ShopPanel() {
 
                         </ArrowBackIosIcon>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item xs={12} sm={12} lg={3} xl={3}>
                         <a href="https://carbonforest.org/products/carbonforest-eco-hoodie?pr_prod_strat=collection_fallback&pr_rec_pid=6588900311234&pr_ref_pid=6583387717826&pr_seq=uniform">
                             <div className={classes.sweat}></div>
                         </a>
@@ -116,7 +123,7 @@ export default function ShopPanel() {
                             <p>$48</p>
                         </div>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item xs={12} sm={12} lg={3} xl={3}>
                         <a href="https://carbonforest.org/products/carbon-forest-hat?_pos=1&_sid=100118769&_ss=r">
                             <div className={classes.hat}></div>
                         </a>
@@ -125,7 +132,7 @@ export default function ShopPanel() {
                             <p>$14</p>
                         </div>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item xs={12} sm={12} lg={3} xl={3}>
                         <a href="https://carbonforest.org/products/carbonforest-eco-triblend-tee?_pos=1&_sid=5dca28cab&_ss=r">
                             <div className={classes.tee}></div>
                         </a>
@@ -149,8 +156,6 @@ export default function ShopPanel() {
                     SAVING THE WORLD IS BETTER WITH FRIENDS!
                     INVITE YOUR FRIENDS TO JOIN CARBONFOREST.
                 </h1>
-                <input id="refer" type="text"></input>
-                <br></br>
                 <ColorButton>
                     REFER A FRIEND
                 </ColorButton>
