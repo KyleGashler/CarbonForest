@@ -51,8 +51,7 @@ export default function FirstPannel() {
     const classes = useStyles();
 
     return (
-
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
             <div className={classes.community}>
                 <p style={{ marginBottom: "0" }}>Community impact.</p>
                 <hr className={classes.separator2}></hr>

@@ -66,19 +66,17 @@ const useStyles = makeStyles({
 });
 
 
-export default function FirstPannel() {
+export default function TreeInfoPanel() {
     const classes = useStyles();
 
     return (
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
             <div className={classes.yours}>
                 <p style={{ marginBottom: "0" }}>Your impact.</p>
                 <hr className={classes.separator2}></hr>
                 <p className={classes.yourTrees}>Your trees are planted in Colorado! Check out your trees:</p>
                 <div className={classes.speciesImage}></div>
                 <p className={classes.speciesName}>Blue Spruce</p>
-
-
                 <Grid container className={classes.social}>
                     <Grid item xs={12} sm={6}>
                         <SocialIcon url="https://www.facebook.com/sharer/sharer.php?u=carbonforest.org" network="facebook" bgColor="black" style={{ height: 40, width: 40 }} />

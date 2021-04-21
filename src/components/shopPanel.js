@@ -26,7 +26,10 @@ const useStyles = makeStyles({
         height: "650px",
         fontWeight: "bold",
         fontFamily: "Chivo, sans-serif",
-        marginBottom: "50px"
+        marginBottom: "50px",
+        "@media (max-width: 900px)": {
+            height: 1900,
+        },
     },
     hat: {
         backgroundImage: `url(${hat})`,
@@ -70,6 +73,10 @@ const useStyles = makeStyles({
     saving: {
         marginRight: "400px",
         marginLeft: "400px",
+        "@media (max-width: 900px)": {
+            marginRight: "10px",
+            marginLeft: "10px",
+        },
     },
     productDetail: {
         textAlign: "center"
@@ -86,7 +93,6 @@ const ColorButton = withStyles((theme) => ({
         '&:hover': {
             backgroundColor: "gray",
         },
-
     },
 }))(Button);
 
@@ -107,10 +113,11 @@ export default function ShopPanel() {
                 >
                     <Grid item >
                         <ArrowBackIosIcon
-                            style={{ color: "#E6600E" }}
+                            style={{
+                                color: "#E6600E",
+                            }}
                             fontSize="large"
                         >
-
                         </ArrowBackIosIcon>
                     </Grid>
                     <Grid item xs={12} sm={12} lg={3} xl={3}>

@@ -2,7 +2,6 @@ import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
-
 import MainPannel from './MainPanel';
 import MapPannel from './MapPanel';
 import TreeInfoPannel from './TreeInfoPanel';
@@ -16,11 +15,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Dashboard = () => {
-
     const classes = useStyles();
 
     return (
-
         <div className={classes.root}>
             <Grid container>
                 <MainPannel></MainPannel>
@@ -31,6 +28,5 @@ const Dashboard = () => {
         </div>
     );
 };
-
 
 export default Dashboard;

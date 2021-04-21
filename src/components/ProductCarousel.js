@@ -24,7 +24,6 @@ const useStyles = makeStyles({
     },
     slidesButtonRight: {
 
-
     }
 });
 
@@ -40,7 +39,6 @@ export default function Carousel() {
             hasMasterSpinner
             infinite
         >
-
             <Grid container className={classes.slidesContainer}>
                 <Grid item xs={12}>
                     <ButtonBack className={classes.slidesButtonLeft} >Back</ButtonBack>
@@ -71,5 +69,4 @@ export default function Carousel() {
             </Grid>
         </CarouselProvider>
     );
-
 }
