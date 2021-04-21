@@ -19,11 +19,10 @@ exports.getShopData = functions.https.onRequest(async (req, res) => {
     return cors()(req, res, async () => {
         const response = await fetch(`https://${functions.config().shopify.key}:${functions.config().shopify.password}@carbonforest.myshopify.com/admin/api/2021-01/customers.json`);
         const shopifyCustomers = await response.json();
-        let retVal = { email: custEmail };
+        let retVal = {};
 
         for (let customer of shopifyCustomers.customers) {
             if (customer.email.trim().toLowerCase() === custEmail) {
-
                 if (customer.last_order_id) {
                     const orderDetailRes = await fetch(`https://${functions.config().shopify.key}:${functions.config().shopify.password}@carbonforest.myshopify.com/admin/api/2021-01/orders/${customer.last_order_id}.json?fields=current_subtotal_price,created_at`);
                     const orderDetail = await orderDetailRes.json();
@@ -41,9 +40,9 @@ exports.getShopData = functions.https.onRequest(async (req, res) => {
                     retVal.product = 0;
                 }
 
-
                 retVal.first_name = customer.first_name;
                 retVal.created_at = customer.created_at;
+                retVal.email = customer.email;
 
                 break;
             }
