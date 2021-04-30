@@ -76,8 +76,8 @@ export default function FirstPannel() {
             <div className={classes.top}>
                 <div className={classes.titles}>
                     <h1 className={classes.welcome}>
-                        welcome, {customer.first_name}.
-                        </h1>
+                        welcome, {customer.first_name}
+                    </h1>
                     <Grid container className={classes.treeInfo}>
                         <Grid item xs={12} sm={12} md={4} lg={4}>
                             <div className={classes.paper}>
@@ -85,9 +85,9 @@ export default function FirstPannel() {
                                 <hr className={classes.separator}></hr>
                                 <p>Trees planted to date.</p>
                                 <p className={classes.share}>SHARE YOUR PROGRESS</p>
-                                <SocialIcon url="https://www.facebook.com/sharer/sharer.php?u=profile.carbonforest.org" network="facebook" bgColor="white" />
-                                <SocialIcon url="https://twitter.com/intent/tweet?url=profile.carbonforest.org&text=" network="twitter" bgColor="white" />
-                                <SocialIcon url="https://www.instagram.com/carbon_forest/?hl=en" network="instagram" bgColor="white" />
+                                <SocialIcon style={{ height: 40, width: 40, margin: 5 }} url="https://www.facebook.com/sharer/sharer.php?u=profile.carbonforest.org" network="facebook" bgColor="white" />
+                                <SocialIcon style={{ height: 40, width: 40, margin: 5 }} url="https://twitter.com/intent/tweet?url=profile.carbonforest.org&text=" network="twitter" bgColor="white" />
+                                <SocialIcon style={{ height: 40, width: 40, margin: 5 }} url="https://www.instagram.com/carbon_forest/?hl=en" network="instagram" bgColor="white" />
                                 {/* <SocialIcon url="mailto:caitlin@carbonforest.org?&subject=&cc=&bcc=&body=carbonforest.org%0A" network="email" bgColor="white" /> */}
                                 <p className={classes.share}>scroll for more <ArrowDropDownIcon></ArrowDropDownIcon> </p>
                             </div>

@@ -2,8 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { withStyles } from '@material-ui/core/styles';
 
 
@@ -100,10 +98,9 @@ export default function ShopPanel() {
     const classes = useStyles();
 
     return (
-
         <Grid item xs={12} sm={12}>
             <div className={classes.shop}>
-                <p style={{ marginBottom: "0" }} className={classes.title}>Shop CarbonForest.</p>
+                <p style={{ marginBottom: "0" }} className={classes.title}>Shop</p>
                 <hr className={classes.separator2}></hr>
                 <Grid
                     container
@@ -111,15 +108,6 @@ export default function ShopPanel() {
                     justify="center"
                     alignItems="center"
                 >
-                    <Grid item >
-                        <ArrowBackIosIcon
-                            style={{
-                                color: "#E6600E",
-                            }}
-                            fontSize="large"
-                        >
-                        </ArrowBackIosIcon>
-                    </Grid>
                     <Grid item xs={12} sm={12} lg={3} xl={3}>
                         <a href="https://carbonforest.org/products/carbonforest-eco-hoodie?pr_prod_strat=collection_fallback&pr_rec_pid=6588900311234&pr_ref_pid=6583387717826&pr_seq=uniform">
                             <div className={classes.sweat}></div>
@@ -148,15 +136,7 @@ export default function ShopPanel() {
                             <p>$20</p>
                         </div>
                     </Grid>
-                    <Grid item >
-                        <ArrowForwardIosIcon
-                            style={{ color: "#E6600E" }}
-                            fontSize="large"
-                        >
-                        </ArrowForwardIosIcon>
-                    </Grid>
                 </Grid>
-
             </div>
             <div className={classes.invite}>
                 <h1 className={classes.saving}>
@@ -168,6 +148,5 @@ export default function ShopPanel() {
                 </ColorButton>
             </div>
         </Grid>
-
     );
 }

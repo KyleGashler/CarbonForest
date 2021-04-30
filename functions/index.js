@@ -29,9 +29,9 @@ exports.getShopData = functions.https.onRequest(async (req, res) => {
                     console.log(orderDetail);
                     const orderTotal = parseFloat(orderDetail.current_subtotal_price)
 
-                    if (orderTotal <= 30) {
+                    if (orderTotal >= 30) {
                         retVal.product = 5;
-                    } else if (orderTotal <= 16) {
+                    } else if (orderTotal >= 16) {
                         retVal.product = 10;
                     } else {
                         retVal.product = 30;

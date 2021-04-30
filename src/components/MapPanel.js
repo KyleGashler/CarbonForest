@@ -61,10 +61,10 @@ export default function FirstPannel() {
                     <h3 className={classes.cfStats}>75 MEMBERS</h3>
                     <Grid container className={classes.social}>
                         <Grid item xs={12} sm={6}>
-                            <SocialIcon url="https://www.facebook.com/sharer/sharer.php?u=carbonforest.org" network="facebook" bgColor="white" style={{ height: 40, width: 40 }} />
-                            <SocialIcon url="https://twitter.com/intent/tweet?url=carbonforest.org&text=" network="twitter" bgColor="white" style={{ height: 40, width: 40 }} />
-                            <SocialIcon url="https://www.instagram.com/carbon_forest/?hl=en" network="instagram" bgColor="white" style={{ height: 40, width: 40 }} />
-                            <SocialIcon url="mailto:caitlin@carbonforest.org?&subject=&cc=&bcc=&body=carbonforest.org%0A" network="email" bgColor="white" style={{ height: 40, width: 40 }} />
+                            <SocialIcon url="https://www.facebook.com/sharer/sharer.php?u=carbonforest.org" network="facebook" bgColor="white" style={{ height: 40, width: 40, margin: 5 }} />
+                            <SocialIcon url="https://twitter.com/intent/tweet?url=carbonforest.org&text=" network="twitter" bgColor="white" style={{ height: 40, width: 40, margin: 5 }} />
+                            <SocialIcon url="https://www.instagram.com/carbon_forest/?hl=en" network="instagram" bgColor="white" style={{ height: 40, width: 40, margin: 5 }} />
+                            <SocialIcon url="mailto:caitlin@carbonforest.org?&subject=&cc=&bcc=&body=carbonforest.org%0A" network="email" bgColor="white" style={{ height: 40, width: 40, margin: 5 }} />
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <div>WOOHOO! SHARE WITH YOUR FRIENDS.</div>
