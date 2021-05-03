@@ -1,7 +1,6 @@
 import {
     AppBar,
     Toolbar,
-    Typography,
     makeStyles,
     IconButton,
     Drawer,
@@ -9,6 +8,7 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import React, { useState, useEffect } from "react";
+import logoImange from "../images/logo.png";
 
 const headersData = [
     {
@@ -17,37 +17,37 @@ const headersData = [
     },
     {
         label: "Products",
-        href: "https://carbonforest.myshopify.com/pages/products",
+        href: "https://carbonforest.org/pages/products",
     },
     {
         label: "FAQ",
-        href: "https://carbonforest.myshopify.com/pages/faq",
+        href: "https://carbonforest.org/pages/faq",
     },
     {
         label: "About Us",
-        href: "https://carbonforest.myshopify.com/pages/about-us-1",
+        href: "https://carbonforest.org/pages/about-us-1",
     },
     {
-        label: "My Carbon Profile",
-        href: "#",
+        label: "Blog",
+        href: "https://carbonforest.org/blogs/news",
     },
 ];
 
 
 const useStyles = makeStyles(() => ({
     header: {
-        backgroundColor: "gray",
+        backgroundColor: "white",
         paddingRight: "79px",
-        paddingLeft: "118px",
+        paddingLeft: "100px",
         "@media (max-width: 900px)": {
             paddingLeft: 0,
         },
     },
     logo: {
-        fontFamily: "Work Sans, sans-serif",
-        fontWeight: 600,
-        color: "#FFFEFE",
-        textAlign: "left",
+        top: 0,
+        left: 0,
+        width: "10%",
+        height: "10%"
     },
     menuButton: {
         fontFamily: "Open Sans, sans-serif",
@@ -151,9 +151,10 @@ export default function Header() {
     };
 
     const carbonForestLogo = (
-        <Typography variant="h6" component="h1" className={logo}>
-            CarbonForest
-        </Typography>
+        // <Typography variant="h6" component="h1" className={logo}>
+        //     CarbonForest
+        // </Typography>
+        <img src={logoImange} className={logo} alt="Logo" />
     );
 
     const getMenuButtons = () => {
@@ -176,12 +177,9 @@ export default function Header() {
 
     return (
         <header>
-            <AppBar className={header}>
+            <AppBar className={header} position="absolute">
                 {mobileView ? displayMobile() : displayDesktop()}
             </AppBar>
         </header>
     );
 }
-
-
-

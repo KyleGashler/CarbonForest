@@ -15,7 +15,6 @@ export default function Authorizer() {
 
     if (!userEmail) {
         const userEmailFromUrl = new URLSearchParams(document.location.search.substring(1)).get("cust");
-        console.log("userEmailFromUrl = ", userEmailFromUrl);
         if (userEmailFromUrl) {
             addEmailToStore(userEmailFromUrl);
         }
@@ -25,9 +24,7 @@ export default function Authorizer() {
         }
     }
 
-
     if (userEmail && customer.email) {
-
         return (
             <div>
                 <Header />
@@ -57,7 +54,6 @@ export default function Authorizer() {
         )
     }
     else {
-        console.log("Forcing login")
         return (
             <div>
                 <Header />
