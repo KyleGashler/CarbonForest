@@ -151,9 +151,11 @@ export default function ShopPanel() {
                 <p className={classes.saving}>
                     INVITE YOUR FRIENDS TO JOIN CARBONFOREST.
                 </p>
-                <ColorButton className={classes.saving}>
-                    REFER A FRIEND
-                </ColorButton>
+                <a href="https://carbonforest.org/pages/refer">
+                    <ColorButton className={classes.saving}>
+                        REFER A FRIEND
+                    </ColorButton>
+                </a>
             </div>
         </Grid>
     );
