@@ -16,7 +16,6 @@ export default {
         }
     }),
     toggleRequestInFlight: action((state, val) => {
-        console.log("Updating the Email")
         state.requestInFlight = val;
     }),
     //thunks

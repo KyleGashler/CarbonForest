@@ -32,7 +32,6 @@ export default function Authorizer() {
                     <Dashboard />
                 </div>
             </div>
-
         )
     } else if (requestInFlight) {
         return (
