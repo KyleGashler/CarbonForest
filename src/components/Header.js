@@ -50,7 +50,6 @@ const useStyles = makeStyles(() => ({
         height: "10%"
     },
     menuButton: {
-        fontFamily: "Open Sans, sans-serif",
         fontWeight: 700,
         size: "18px",
         marginLeft: "38px",
@@ -59,6 +58,7 @@ const useStyles = makeStyles(() => ({
     toolbar: {
         display: "flex",
         justifyContent: "space-between",
+        fontSize: 24
     },
     drawerContainer: {
         padding: "20px 30px",
@@ -108,7 +108,7 @@ export default function Header() {
                 <IconButton
                     {...{
                         edge: "start",
-                        color: "inherit",
+                        color: "black",
                         "aria-label": "menu",
                         "aria-haspopup": "true",
                         onClick: handleDrawerOpen,

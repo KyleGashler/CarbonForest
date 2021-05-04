@@ -17,13 +17,13 @@ const useStyles = makeStyles({
         backgroundSize: "cover",
         height: 950,
         "@media (max-width: 900px)": {
-            height: 1550,
+            height: 1360,
+            backgroundPosition: "top right",
         },
     },
     paper: {
         textAlign: 'left',
         color: "white",
-        background: "rgba(76, 175, 80, 0.0)",
         paddingLeft: "10%",
         paddingRight: "10%",
         "@media (max-width: 900px)": {
@@ -36,7 +36,11 @@ const useStyles = makeStyles({
     welcome: {
         fontSize: "60pt",
         color: "black",
-        fontWeight: "900"
+        fontWeight: "900",
+        "@media (max-width: 900px)": {
+            fontSize: "40pt",
+            paddingBottom: "30px"
+        },
     },
     treeInfo: {
         paddingLeft: "30%",
@@ -51,7 +55,10 @@ const useStyles = makeStyles({
     underlined: {
         fontSize: "50pt",
         fontWeight: "700",
-        lineHeight: "1%"
+        lineHeight: "1%",
+        "@media (max-width: 900px)": {
+            fontSize: "30pt",
+        },
     },
     separator: {
         color: "white",

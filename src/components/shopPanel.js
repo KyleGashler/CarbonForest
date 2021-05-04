@@ -21,12 +21,12 @@ const useStyles = makeStyles({
         paddingLeft: "20px",
         paddingRight: "20px",
         color: "black",
-        height: "650px",
+        height: "670px",
         fontWeight: "bold",
-        fontFamily: "Chivo, sans-serif",
         marginBottom: "50px",
         "@media (max-width: 900px)": {
             height: 1900,
+            textAlign: "center"
         },
     },
     hat: {
@@ -71,17 +71,23 @@ const useStyles = makeStyles({
     saving: {
         marginRight: "400px",
         marginLeft: "400px",
+        fontSize: 30,
         "@media (max-width: 900px)": {
             marginRight: "10px",
             marginLeft: "10px",
         },
     },
     productDetail: {
-        textAlign: "center"
+        textAlign: "center",
+        fontSize: "20pt",
     },
     title: {
-        fontSize: "50pt"
-    }
+        fontSize: "40pt",
+        "@media (max-width: 900px)": {
+            fontSize: "30pt",
+            textAlign: "center"
+        },
+    },
 });
 
 const ColorButton = withStyles((theme) => ({
@@ -139,11 +145,13 @@ export default function ShopPanel() {
                 </Grid>
             </div>
             <div className={classes.invite}>
-                <h1 className={classes.saving}>
+                <p className={classes.saving}>
                     SAVING THE WORLD IS BETTER WITH FRIENDS!
+                </p>
+                <p className={classes.saving}>
                     INVITE YOUR FRIENDS TO JOIN CARBONFOREST.
-                </h1>
-                <ColorButton>
+                </p>
+                <ColorButton className={classes.saving}>
                     REFER A FRIEND
                 </ColorButton>
             </div>

@@ -9,23 +9,26 @@ import map from '../images/TreeMap.png';
 
 const useStyles = makeStyles({
     separator2: {
-        color: "white",
         display: "inline-block",
         width: "75%",
         background: "#E6600E",
-        height: "5px",
+        height: "4px",
     },
     community: {
         textAlign: "left",
-        paddingTop: "20px",
+        paddingTop: "1px",
         backgroundColor: "gray",
         paddingLeft: "20px",
         paddingRight: "20px",
-        fontSize: "50pt",
+        fontSize: "40pt",
         color: "white",
-        height: "1200px",
+        height: "1050px",
         fontWeight: "bold",
-        fontFamily: "Chivo, sans-serif"
+        "@media (max-width: 900px)": {
+            height: "1100px",
+            textAlign: "center",
+            fontSize: "30pt",
+        },
     },
     map: {
         backgroundImage: `url(${map})`,
@@ -36,7 +39,7 @@ const useStyles = makeStyles({
     },
     cfStats: {
         textAlign: "center",
-        fontSize: "42pt",
+        fontSize: "30pt",
 
     },
     social: {
@@ -45,6 +48,9 @@ const useStyles = makeStyles({
         paddingRight: "12%",
         letterSpacing: "1px",
     },
+    whoohoo: {
+        paddingTop: "10px"
+    }
 });
 
 export default function FirstPannel() {
@@ -58,7 +64,7 @@ export default function FirstPannel() {
                 <div className={classes.map}></div>
                 <div className={classes.cfStats}>
                     <h3 className={classes.cfStats}>2501 TREES PLANTED</h3>
-                    <h3 className={classes.cfStats}>75 MEMBERS</h3>
+                    <h3 className={classes.cfStats}>52 MEMBERS</h3>
                     <Grid container className={classes.social}>
                         <Grid item xs={12} sm={6}>
                             <SocialIcon url="https://www.facebook.com/sharer/sharer.php?u=carbonforest.org" network="facebook" bgColor="white" style={{ height: 40, width: 40, margin: 5 }} />
@@ -67,10 +73,9 @@ export default function FirstPannel() {
                             <SocialIcon url="mailto:caitlin@carbonforest.org?&subject=&cc=&bcc=&body=carbonforest.org%0A" network="email" bgColor="white" style={{ height: 40, width: 40, margin: 5 }} />
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <div>WOOHOO! SHARE WITH YOUR FRIENDS.</div>
+                            <div className={classes.whoohoo}>WOOHOO! SHARE WITH YOUR FRIENDS.</div>
                         </Grid>
                     </Grid>
-
                 </div>
             </div>
         </Grid>

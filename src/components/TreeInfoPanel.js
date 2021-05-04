@@ -4,32 +4,36 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { SocialIcon } from 'react-social-icons';
 import blueSpruce from '../images/blueSpruce.png';
-import Dial2 from '../images/Dial2.png';
 
 
 const useStyles = makeStyles({
     separator2: {
-        color: "white",
         display: "inline-block",
         width: "75%",
         background: "#E6600E",
-        height: "5px",
+        height: "4px",
     },
     yours: {
-        textAlign: "left",
-        paddingTop: "20px",
         backgroundColor: "white",
+        paddingTop: "1px",
+        textAlign: "left",
         paddingLeft: "20px",
         paddingRight: "20px",
-        fontSize: "50pt",
-        fontFamily: "Chivo, sans-serif",
-        fontWeight: "bold"
+        fontSize: "40pt",
+        fontWeight: "bold",
+        "@media (max-width: 900px)": {
+            textAlign: "center",
+            fontSize: "30pt",
+        },
     },
     yourTrees: {
         fontSize: "16pt",
         textAlign: "center",
-        paddingBottom: "50px",
+        paddingBottom: "20px",
         letterSpacing: "1px",
+        "@media (max-width: 900px)": {
+            fontSize: "12pt",
+        },
     },
     speciesImage: {
         backgroundImage: `url(${blueSpruce})`,
@@ -37,34 +41,28 @@ const useStyles = makeStyles({
         backgroundPosition: "center center",
         backgroundSize: "1240px",
         height: 550,
-
+        "@media (max-width: 900px)": {
+            backgroundSize: "840px",
+            height: 340,
+        },
     },
     speciesName: {
         fontSize: "16pt",
         textAlign: "center",
-    },
-    progressImage: {
-        backgroundImage: `url(${Dial2})`,
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center center",
-        backgroundSize: "180px",
-        height: 180,
     },
     social: {
         fontSize: "15pt",
         paddingLeft: "12%",
         paddingRight: "12%",
         letterSpacing: "1px",
-        marginTop: "100px",
-        textAlign: "center",
-    },
-    progressSection: {
         marginTop: "50px",
-        paddingRight: "12%",
-        paddingLeft: "12%",
+        textAlign: "center",
+        paddingBottom: "50px"
+    },
+    whoohoo: {
+        paddingTop: "10px"
     }
 });
-
 
 export default function TreeInfoPanel() {
     const classes = useStyles();
@@ -74,9 +72,9 @@ export default function TreeInfoPanel() {
             <div className={classes.yours}>
                 <p style={{ marginBottom: "0" }}>Your impact.</p>
                 <hr className={classes.separator2}></hr>
-                <p className={classes.yourTrees}>Your trees are planted in Colorado! Check out your trees:</p>
+                <p className={classes.yourTrees}>YOUR TREES ARE PLANTED IN COLORADO! CHECKOUT YOUR TREES:</p>
                 <div className={classes.speciesImage}></div>
-                <p className={classes.speciesName}>Blue Spruce</p>
+                <p className={classes.speciesName}>BLUE SPRUCE</p>
                 <Grid container className={classes.social}>
                     <Grid item xs={12} sm={6}>
                         <SocialIcon url="https://www.facebook.com/sharer/sharer.php?u=carbonforest.org" network="facebook" bgColor="black" style={{ height: 40, width: 40, margin: 5 }} />
@@ -85,7 +83,7 @@ export default function TreeInfoPanel() {
                         <SocialIcon url="mailto:caitlin@carbonforest.org?&subject=&cc=&bcc=&body=carbonforest.org%0A" network="email" bgColor="black" style={{ height: 40, width: 40, margin: 5 }} />
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <div>WOOHOO! SHARE WITH YOUR FRIENDS.</div>
+                        <div className={classes.whoohoo} >WOOHOO! SHARE WITH YOUR FRIENDS.</div>
                     </Grid>
                 </Grid>
             </div>
