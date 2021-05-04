@@ -72,11 +72,14 @@ const useStyles = makeStyles({
     }
 });
 
+
+
 export default function FirstPannel() {
     const customer = useStoreState((state) => state.customer);
     const classes = useStyles();
     let treesPlanted = calcTrees(customer.created_at, customer.product);
     treesPlanted = Math.ceil(treesPlanted);
+    const percentageOfProgress = ((treesPlanted / 680) * 100).toFixed(0);
 
     return (
         <Grid item xs={12} >
@@ -92,8 +95,8 @@ export default function FirstPannel() {
                                 <hr className={classes.separator}></hr>
                                 <p>Trees planted to date.</p>
                                 <p className={classes.share}>SHARE YOUR PROGRESS</p>
-                                <SocialIcon style={{ height: 40, width: 40, margin: 5 }} url="https://www.facebook.com/sharer/sharer.php?u=profile.carbonforest.org" network="facebook" bgColor="white" />
-                                <SocialIcon style={{ height: 40, width: 40, margin: 5 }} url="https://twitter.com/intent/tweet?url=profile.carbonforest.org&text=" network="twitter" bgColor="white" />
+                                <SocialIcon style={{ height: 40, width: 40, margin: 5 }} url="https://www.facebook.com/sharer/sharer.php?u=carbonforest.org" network="facebook" bgColor="white" />
+                                <SocialIcon style={{ height: 40, width: 40, margin: 5 }} url="https://twitter.com/intent/tweet?url=carbonforest.org&text=" network="twitter" bgColor="white" />
                                 <SocialIcon style={{ height: 40, width: 40, margin: 5 }} url="https://www.instagram.com/carbon_forest/?hl=en" network="instagram" bgColor="white" />
                                 {/* <SocialIcon url="mailto:caitlin@carbonforest.org?&subject=&cc=&bcc=&body=carbonforest.org%0A" network="email" bgColor="white" /> */}
                                 <p className={classes.share}>scroll for more <ArrowDropDownIcon></ArrowDropDownIcon> </p>
@@ -108,7 +111,7 @@ export default function FirstPannel() {
                         </Grid>
                         <Grid item xs={12} sm={12} md={4} lg={4}>
                             <div className={classes.paper}>
-                                <p className={classes.underlined}>{Math.ceil(treesPlanted / 680)}%</p>
+                                <p className={classes.underlined}>{percentageOfProgress}%</p>
                                 <hr className={classes.separator}></hr>
                                 <p>Of your lifetime carbon footprint erased.</p>
                             </div>
