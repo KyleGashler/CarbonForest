@@ -62,8 +62,11 @@ const useStyles = makeStyles({
   },
 });
 
-export default function TreeInfoPanel() {
+export default function TreeInfoPanel(props) {
   const classes = useStyles();
+  let treeLocation = props.customer.treeLocation
+    ? props.customer.treeLocation.toUpperCase()
+    : "CALIFORNIA";
 
   return (
     <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
@@ -71,7 +74,7 @@ export default function TreeInfoPanel() {
         <p style={{ marginBottom: "0" }}>Your impact.</p>
         <hr className={classes.separator2}></hr>
         <p className={classes.yourTrees}>
-          YOUR TREES ARE PLANTED IN COLORADO! CHECKOUT YOUR TREES:
+          YOUR TREES ARE PLANTED IN {treeLocation}! CHECKOUT YOUR TREES:
         </p>
         <div className={classes.speciesImage}></div>
         <p className={classes.speciesName}>BLUE SPRUCE</p>

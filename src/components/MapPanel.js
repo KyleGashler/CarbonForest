@@ -60,8 +60,11 @@ const useStyles = makeStyles({
   },
 });
 
-export default function FirstPannel() {
+export default function MapPanel(props) {
   const classes = useStyles();
+  const customerCount = props.customer.customerCount
+    ? props.customer.customerCount + 2
+    : 52;
 
   return (
     <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
@@ -71,7 +74,7 @@ export default function FirstPannel() {
         <div className={classes.map}></div>
         <div className={classes.cfStats}>
           <h3 className={classes.cfStats}>2501 TREES PLANTED</h3>
-          <h3 className={classes.cfStats}>52 MEMBERS</h3>
+          <h3 className={classes.cfStats}>{customerCount} MEMBERS</h3>
           <Grid container className={classes.social}>
             <Grid item xs={12} sm={6}>
               <SocialIcon
