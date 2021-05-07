@@ -1,34 +1,35 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Chivo&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Chivo&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&display=swap");
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Chivo, sans-serif';
+  font-family: -apple-system, BlinkMacSystemFont, "Chivo, sans-serif";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: 'Chivo, sans-serif',
-    monospace;
+  font-family: "Chivo, sans-serif", monospace;
 }
 
-a:link {
+a {
   text-decoration: none;
+  color: black;
 }
 
-.login-form
-{
-justify-content: center;
-min-height: 90vh;
+a:hover {
+  color: coral;
 }
-.button-block{
-width: 100%;
+
+.login-form {
+  justify-content: center;
+  min-height: 90vh;
 }
-.login-background
-{
-justify-content: center;
-min-height: 30vh;
-padding: 50px;
+.button-block {
+  width: 100%;
+}
+.login-background {
+  justify-content: center;
+  min-height: 30vh;
+  padding: 50px;
 }
