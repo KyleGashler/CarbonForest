@@ -1,41 +1,44 @@
 {
-  "name": "carbon-forest",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^4.11.3",
-    "@material-ui/icons": "^4.11.2",
-    "easy-peasy": "^4.0.1",
-    "firebase": "^8.2.6",
-    "node-fetch": "^2.6.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-hook-form": "^6.15.1",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.1",
-    "react-social-icons": "^4.1.0",
-    "remote-redux-devtools": "^0.5.16",
-    "web-vitals": "^0.2.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "name": "carbon-forest",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@material-ui/core": "^4.11.3",
+        "@material-ui/icons": "^4.11.2",
+        "easy-peasy": "^4.0.1",
+        "firebase": "^8.2.6",
+        "node-fetch": "^2.6.1",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
+        "react-hook-form": "^6.15.1",
+        "react-router-dom": "^5.2.0",
+        "react-scripts": "4.0.1",
+        "react-social-icons": "^4.1.0",
+        "remote-redux-devtools": "^0.5.16",
+        "web-vitals": "^0.2.4"
+    },
+    "devDependencies": {
+        "prettier": "^2.0.5"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
 }
