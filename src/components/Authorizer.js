@@ -21,7 +21,7 @@ export default function Authorizer() {
             addEmailToStore(userEmailFromUrl);
         }
     } else {
-        if (!customer.first_name) {
+        if (!customer.noShopifyCustomerFound && !customer.first_name) {
             saveCustInfo(userEmail);
         }
     }
@@ -44,7 +44,7 @@ export default function Authorizer() {
                 </div>
             </div>
         );
-    } else if (userEmail) {
+    } else if (customer.noShopifyCustomerFound) {
         return (
             <div>
                 <Header />

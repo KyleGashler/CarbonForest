@@ -10,7 +10,14 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 345,
+        margin: 'auto',
+    },
+    card: {
+        textAlign: 'center',
+    },
+    cover: {
+        width: 451,
+        margin: 'auto',
     },
 });
 
@@ -19,36 +26,34 @@ export default function ErrorModule() {
 
     return (
         <Card className={classes.root}>
-            <CardActionArea>
+            <CardActionArea className={classes.cover}>
                 <CardMedia
                     component="img"
                     alt="errorTree"
-                    height="140"
+                    height="600"
                     image="https://images.freeimages.com/images/large-previews/e59/autumn-tree-1408307.jpg"
                     title="errorTree"
                 />
-                <CardContent>
+                <CardContent className={classes.card}>
                     <Typography gutterBottom variant="h5" component="h2">
                         Hmmmm...
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        If this page does not load, your information was not found. Please register
-                        an account with CarbonForest!
+                        Your information was not found. Please register an account with
+                        CarbonForest!
                     </Typography>
                 </CardContent>
             </CardActionArea>
             <CardActions>
                 <Button
+                    className={classes.cover}
                     size="small"
                     color="primary"
                     onClick={() => {
-                        window.location.href = 'carbonforest.org/account/register';
+                        window.location.href = 'https://carbonforest.org/account/register';
                     }}
                 >
-                    Share
-                </Button>
-                <Button size="small" color="primary">
-                    Learn More
+                    Register
                 </Button>
             </CardActions>
         </Card>

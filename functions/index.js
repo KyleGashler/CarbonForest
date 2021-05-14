@@ -67,6 +67,8 @@ exports.getShopData = functions.https.onRequest(async (req, res) => {
                     retVal.email = customer.email;
 
                     break;
+                } else {
+                    retVal.noShopifyCustomerFound = true;
                 }
             }
         }

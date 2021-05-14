@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
 import blueSpruce from '../images/blueSpruce.png';
+import ponderosa from '../images/ponderosa.jpg';
 
 const useStyles = makeStyles({
     separator2: {
@@ -33,12 +34,23 @@ const useStyles = makeStyles({
             fontSize: '12pt',
         },
     },
-    speciesImage: {
+    colo: {
         backgroundImage: `url(${blueSpruce})`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center center',
         backgroundSize: '1240px',
         height: 550,
+        '@media (max-width: 900px)': {
+            backgroundSize: '840px',
+            height: 340,
+        },
+    },
+    cali: {
+        backgroundImage: `url(${ponderosa})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center center',
+        backgroundSize: '1240px',
+        height: 720,
         '@media (max-width: 900px)': {
             backgroundSize: '840px',
             height: 340,
@@ -76,9 +88,39 @@ export default function TreeInfoPanel(props) {
                 <p className={classes.yourTrees}>
                     YOUR TREES ARE PLANTED IN {treeLocation}! CHECKOUT YOUR TREES:
                 </p>
-                <div className={classes.speciesImage}></div>
-                <p className={classes.speciesName}>BLUE SPRUCE</p>
+                <GetTreeInfo treeLocation={treeLocation} />
             </div>
         </Grid>
+    );
+}
+
+function GetTreeInfo(props) {
+    const treeLocation = props.treeLocation;
+    if (treeLocation.trim() === 'CALIFORNIA') {
+        return <RenderCaliTree />;
+    } else {
+        return <RenderColoTree />;
+    }
+}
+
+function RenderCaliTree(props) {
+    const classes = useStyles();
+
+    return (
+        <>
+            <p className={classes.speciesName}>PONDEROSA PINE</p>
+            <div className={classes.cali}></div>
+        </>
+    );
+}
+
+function RenderColoTree(props) {
+    const classes = useStyles();
+
+    return (
+        <>
+            <div className={classes.colo}></div>
+            <p className={classes.speciesName}>BLUE SPRUCE</p>
+        </>
     );
 }

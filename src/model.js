@@ -27,8 +27,7 @@ export default {
             `https://profile.carbonforest.org/appData?email=${encodedEmail}`
         );
         const data = await response.json();
-
-        actions.loadCustomerState(data);
         actions.toggleRequestInFlight(false);
+        actions.loadCustomerState(data);
     }),
 };
