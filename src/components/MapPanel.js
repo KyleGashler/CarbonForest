@@ -102,7 +102,9 @@ export default function MapPanel(props) {
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <div className={classes.whoohoo}>WOOHOO! SHARE WITH YOUR FRIENDS.</div>
+                            <div className={classes.whoohoo}>
+                                Woo hoo! Take a screenshot and share your progress with friends.
+                            </div>
                         </Grid>
                     </Grid>
                 </div>

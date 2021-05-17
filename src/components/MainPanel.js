@@ -88,7 +88,9 @@ export default function FirstPannel(props) {
                                 <p className={classes.underlined}>{treesPlanted}</p>
                                 <hr className={classes.separator}></hr>
                                 <p>Trees planted to date.</p>
-                                <p className={classes.share}>SHARE YOUR PROGRESS</p>
+                                <p className={classes.share}>
+                                    Take a screenshot and share your progress on social media.
+                                </p>
                                 <SocialIcon
                                     style={{ height: 40, width: 40, margin: 5 }}
                                     url="https://www.facebook.com/sharer/sharer.php?u=carbonforest.org"
