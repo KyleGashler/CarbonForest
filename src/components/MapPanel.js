@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
 import { SocialIcon } from 'react-social-icons';
-import map from '../images/TreeMap.png';
+import map from '../media/TreeMap.png';
 
 const useStyles = makeStyles({
     separator2: {

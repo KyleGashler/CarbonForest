@@ -1,7 +1,7 @@
 import { AppBar, Toolbar, makeStyles, IconButton, Drawer, MenuItem } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import React, { useState, useEffect } from 'react';
-import logoImange from '../images/logo.png';
+import logoImange from '../media/logo.png';
 
 const headersData = [
     {

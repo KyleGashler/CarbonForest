@@ -1,8 +1,6 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 
-admin.initializeApp();
-
 exports.updateTreeCount = functions.pubsub.schedule('every 24 hours').onRun((context) => {
     const db = admin.firestore();
 

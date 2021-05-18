@@ -4,9 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 
-import hat from '../images/hatCircle.png';
-import sweat from '../images/sweatshirt.png';
-import tee from '../images/tee.png';
+import hat from '../media/hatCircle.png';
+import sweat from '../media/sweatshirt.png';
+import tee from '../media/tee.png';
 
 const useStyles = makeStyles({
     separator2: {

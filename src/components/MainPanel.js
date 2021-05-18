@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { SocialIcon } from 'react-social-icons';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import dashboardBackground from '../images/dashboardBackground.png';
+import dashboardBackground from '../media/dashboardBackground.png';
 import calcTrees from '../utils/calcTrees';
 
 const useStyles = makeStyles({

@@ -31,7 +31,7 @@ export default function ErrorModule() {
                     component="img"
                     alt="errorTree"
                     height="600"
-                    image="https://images.freeimages.com/images/large-previews/e59/autumn-tree-1408307.jpg"
+                    image="https://images.freeimages.com/media/large-previews/e59/autumn-tree-1408307.jpg"
                     title="errorTree"
                 />
                 <CardContent className={classes.card}>

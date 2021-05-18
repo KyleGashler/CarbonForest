@@ -2,8 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
-import blueSpruce from '../images/blueSpruce.png';
-import ponderosa from '../images/ponderosa.jpg';
+import blueSpruce from '../media/blueSpruce.png';
+import ponderosa from '../media/ponderosa.jpg';
 
 const useStyles = makeStyles({
     separator2: {
