@@ -86,7 +86,7 @@ export default function SignIn() {
                     </Button>
                     <Grid container>
                         <Grid item>
-                            <Link href="https://carbonforest.org/account/register" variant="signUp">
+                            <Link href="https://carbonforest.org/account/register">
                                 {"Don't have an account? Sign Up"}
                             </Link>
                         </Grid>

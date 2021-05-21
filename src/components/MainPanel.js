@@ -99,9 +99,23 @@ export default function FirstPannel(props) {
                         <Grid item xs={12} sm={12} md={4} lg={4}>
                             <div className={classes.paper}>
                                 <p className={classes.underlined}>{treesPlanted}</p>
-
                                 <hr className={classes.separator}></hr>
                                 <p>Trees planted to date.</p>
+                            </div>
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={4} lg={4}>
+                            <div className={classes.paper}>
+                                <p className={classes.underlined}>{680 - treesPlanted}</p>
+                                <hr className={classes.separator}></hr>
+                                <p>Trees to go to erase your carbon footprint.</p>
+                            </div>
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={4} lg={4}>
+                            <div className={classes.paper}>
+                                <p className={classes.underlined}>{percentageOfProgress}%</p>
+                                <hr className={classes.separator}></hr>
+                                <p>Of your lifetime carbon footprint erased.</p>
+
                                 <p className={classes.share}>
                                     Take a screenshot and share your progress on social media.
                                 </p>
@@ -127,20 +141,6 @@ export default function FirstPannel(props) {
                                 <p className={classes.share}>
                                     scroll for more <ArrowDropDownIcon></ArrowDropDownIcon>{' '}
                                 </p>
-                            </div>
-                        </Grid>
-                        <Grid item xs={12} sm={12} md={4} lg={4}>
-                            <div className={classes.paper}>
-                                <p className={classes.underlined}>{680 - treesPlanted}</p>
-                                <hr className={classes.separator}></hr>
-                                <p>Trees to go to erase your carbon footprint.</p>
-                            </div>
-                        </Grid>
-                        <Grid item xs={12} sm={12} md={4} lg={4}>
-                            <div className={classes.paper}>
-                                <p className={classes.underlined}>{percentageOfProgress}%</p>
-                                <hr className={classes.separator}></hr>
-                                <p>Of your lifetime carbon footprint erased.</p>
                             </div>
                         </Grid>
                     </Grid>
