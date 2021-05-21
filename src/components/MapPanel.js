@@ -39,8 +39,11 @@ const useStyles = makeStyles({
         backgroundImage: `url(${map})`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center center',
-        backgroundSize: 'cover',
-        height: 500,
+        backgroundSize: 'contain',
+        height: 440,
+        '@media (max-width: 700px)': {
+            height: 280,
+        },
         '@media (max-width: 500px)': {
             height: 240,
         },
