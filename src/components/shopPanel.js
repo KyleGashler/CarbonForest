@@ -17,8 +17,8 @@ const useStyles = makeStyles({
     },
     shop: {
         textAlign: 'left',
-        paddingLeft: '20px',
-        paddingRight: '20px',
+        paddingLeft: '10px',
+        paddingRight: '10px',
         color: 'black',
         height: '690px',
         fontWeight: 'bold',
@@ -65,12 +65,10 @@ const useStyles = makeStyles({
         paddingTop: '25px',
         paddingBottom: '50px',
         color: 'white',
-        backgroundColor: '#E6600E',
+        backgroundColor: '#9d4a91',
     },
     saving: {
-        marginRight: '400px',
-        marginLeft: '400px',
-        fontSize: 30,
+        fontSize: 40,
         '@media (max-width: 900px)': {
             marginRight: '10px',
             marginLeft: '10px',
@@ -91,8 +89,11 @@ const useStyles = makeStyles({
 
 const ColorButton = withStyles((theme) => ({
     root: {
-        color: '#E6600E',
+        color: '#9d4a91',
         backgroundColor: 'white',
+        fontWeight: 'bold',
+        marginTop: '20px',
+        fontSize: 30,
         '&:hover': {
             backgroundColor: 'gray',
         },
@@ -109,7 +110,7 @@ export default function ShopPanel() {
                     Shop
                 </p>
                 <hr className={classes.separator2}></hr>
-                <Grid container spacing={3} justify="center" alignItems="center">
+                <Grid container spacing={2} justify="center" alignItems="center">
                     <Grid item xs={12} sm={12} lg={3} xl={3}>
                         <a href="https://carbonforest.org/products/carbonforest-eco-hoodie?pr_prod_strat=collection_fallback&pr_rec_pid=6588900311234&pr_ref_pid=6583387717826&pr_seq=uniform">
                             <div className={classes.sweat}></div>
@@ -128,7 +129,7 @@ export default function ShopPanel() {
                         </a>
                         <div className={classes.productDetail}>
                             <a href="https://carbonforest.org/products/carbon-forest-hat?_pos=1&_sid=100118769&_ss=r">
-                                <p>CarbonForest Econnscious Hat</p>
+                                <p>CarbonForest Eco-conscious Trucker Hat</p>
                             </a>
                             <p>$14</p>
                         </div>
@@ -147,8 +148,8 @@ export default function ShopPanel() {
                 </Grid>
             </div>
             <div className={classes.invite}>
-                <p className={classes.saving}>SAVING THE WORLD IS BETTER WITH FRIENDS!</p>
-                <p className={classes.saving}>INVITE YOUR FRIENDS TO JOIN CARBONFOREST.</p>
+                <p className={classes.saving}>Saving the world is better with friends!</p>
+                <p className={classes.saving}>Invite your friends to join CarbonForest.</p>
                 <a href="https://carbonforest.org/pages/refer">
                     <ColorButton className={classes.saving}>REFER A FRIEND</ColorButton>
                 </a>

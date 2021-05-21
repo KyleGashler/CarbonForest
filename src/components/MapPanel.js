@@ -62,7 +62,7 @@ const useStyles = makeStyles({
 
 export default function MapPanel(props) {
     const classes = useStyles();
-    const customerCount = props.customer.customerCount ? props.customer.customerCount + 2 : 52;
+    const customerCount = props.customer.customerCount ? props.customer.customerCount - 26 : 52;
     const treeCount = props.customer.treeCountTotal;
 
     return (

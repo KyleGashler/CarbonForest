@@ -86,7 +86,7 @@ export default function TreeInfoPanel(props) {
                 <p style={{ marginBottom: '0' }}>Your impact.</p>
                 <hr className={classes.separator2}></hr>
                 <p className={classes.yourTrees}>
-                    YOUR TREES ARE PLANTED IN {treeLocation}! CHECKOUT YOUR TREES:
+                    YOUR TREES ARE PLANTED IN {treeLocation}! CHECK OUT YOUR TREES:
                 </p>
                 <GetTreeInfo treeLocation={treeLocation} />
             </div>

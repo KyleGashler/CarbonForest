@@ -4,20 +4,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { SocialIcon } from 'react-social-icons';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import dashboardBackground from '../media/dashboardBackground.png';
+import backVid from '../media/heroVid.mp4';
+
 import calcTrees from '../utils/calcTrees';
 
 const useStyles = makeStyles({
     top: {
+        paddingTop: '100px',
         textAlign: 'center',
-        backgroundImage: `url(${dashboardBackground})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'bottom right',
-        backgroundSize: 'cover',
-        height: 950,
+        height: 930,
         '@media (max-width: 900px)': {
-            height: 1360,
-            backgroundPosition: 'top right',
+            paddingTop: '0px',
+            height: 1000,
         },
     },
     paper: {
@@ -30,18 +28,19 @@ const useStyles = makeStyles({
         },
     },
     titles: {
-        paddingTop: '180px',
+        position: 'relative',
     },
     welcome: {
-        fontSize: '60pt',
-        color: 'black',
+        fontSize: '70pt',
+        color: 'white',
         fontWeight: '900',
         '@media (max-width: 900px)': {
             fontSize: '40pt',
-            paddingBottom: '30px',
+            paddingBottom: '5px',
         },
     },
     treeInfo: {
+        position: 'relative',
         paddingLeft: '30%',
         paddingRight: '30%',
         fontSize: '16pt',
@@ -69,6 +68,17 @@ const useStyles = makeStyles({
     share: {
         paddingTop: '30px',
     },
+    vid: {
+        position: 'absolute',
+        left: 0,
+        top: 60,
+        minWidth: '100%',
+        minHeight: '100%',
+        maxHeight: '1080px',
+        '@media (max-width: 500px)': {
+            fontSize: '30pt',
+        },
+    },
 });
 
 export default function FirstPannel(props) {
@@ -79,6 +89,9 @@ export default function FirstPannel(props) {
 
     return (
         <Grid item xs={12}>
+            <video autoPlay loop muted playsInline id="video-background" className={classes.vid}>
+                <source src={backVid} type="video/mp4" />
+            </video>
             <div className={classes.top}>
                 <div className={classes.titles}>
                     <h1 className={classes.welcome}>welcome, {props.customer.first_name}</h1>
@@ -86,6 +99,7 @@ export default function FirstPannel(props) {
                         <Grid item xs={12} sm={12} md={4} lg={4}>
                             <div className={classes.paper}>
                                 <p className={classes.underlined}>{treesPlanted}</p>
+
                                 <hr className={classes.separator}></hr>
                                 <p>Trees planted to date.</p>
                                 <p className={classes.share}>

@@ -30,7 +30,7 @@ exports.getShopData = functions.https.onRequest(async (req, res) => {
         const response = await fetch(
             `https://${functions.config().shopify.key}:${
                 functions.config().shopify.password
-            }@carbonforest.myshopify.com/admin/api/2021-01/customers.json`
+            }@carbonforest.myshopify.com/admin/api/2021-01/customers.json?limit=250`
         );
         const shopifyCustomers = await response.json();
         let retVal = {};
