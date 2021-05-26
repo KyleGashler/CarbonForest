@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import { SocialIcon } from 'react-social-icons';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import backVid from '../media/heroVid.mp4';
+import mobileVid from '../media/mobileVid.mp4';
 
 import calcTrees from '../utils/calcTrees';
 
@@ -72,7 +73,7 @@ const useStyles = makeStyles({
         position: 'absolute',
         left: 0,
         top: 60,
-        minWidth: '100%',
+
         minHeight: '100%',
         maxHeight: '1080px',
         '@media (max-width: 500px)': {
@@ -89,9 +90,7 @@ export default function FirstPannel(props) {
 
     return (
         <Grid item xs={12}>
-            <video autoPlay loop muted playsInline id="video-background" className={classes.vid}>
-                <source src={backVid} type="video/mp4" />
-            </video>
+            <ToggleVid></ToggleVid>
             <div className={classes.top}>
                 <div className={classes.titles}>
                     <h1 className={classes.welcome}>welcome, {props.customer.first_name}</h1>
@@ -148,4 +147,40 @@ export default function FirstPannel(props) {
             </div>
         </Grid>
     );
+}
+
+function ToggleVid() {
+    const classes = useStyles();
+
+    if (window.innerWidth < 500) {
+        return (
+            <>
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    id="video-background"
+                    className={classes.vid}
+                >
+                    <source src={mobileVid} type="video/mp4" />
+                </video>
+            </>
+        );
+    } else {
+        return (
+            <>
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    id="video-background"
+                    className={classes.vid}
+                >
+                    <source src={backVid} type="video/mp4" />
+                </video>
+            </>
+        );
+    }
 }
