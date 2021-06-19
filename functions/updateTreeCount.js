@@ -18,12 +18,12 @@ exports.updateTreeCount = functions.pubsub.schedule('every 24 hours').onRun((con
             updateCount(treeCount, customer.total_spent, customer.orders_count);
         }
 
-        db.collection('treeCount').document('current').update({
+        await db.collection('treeCount').doc('current').update({
             total: treeCount,
         });
     };
 
-    doIt();
+    return doIt();
 });
 
 function updateCount(treeCount, totalSpend, ordersCount) {
