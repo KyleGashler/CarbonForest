@@ -32,7 +32,7 @@ exports.getShopData = functions.https.onRequest(async (req, res) => {
                 functions.config().shopify.password
             }@carbonforest.myshopify.com/admin/api/2021-01/customers.json?limit=250`
         );
-        const shopifyCustomers =  response.json();
+        const shopifyCustomers = await response.json();
         let retVal = {};
 
         retVal.treeCountTotal = treeCountTotal;
