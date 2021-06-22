@@ -15,7 +15,7 @@ exports.updateTreeCount = functions.pubsub.schedule('every 24 hours').onRun((con
         const shopifyCustomers = await response.json();
 
         for (let customer of shopifyCustomers.customers) {
-            updateCount(treeCount, customer.total_spent, customer.orders_count);
+            treeCount = updateCount(treeCount, customer.total_spent, customer.orders_count);
         }
 
         await db.collection('treeCount').doc('current').update({
