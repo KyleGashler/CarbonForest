@@ -10,14 +10,14 @@ exports.updateTreeCount = functions.pubsub.schedule('every 24 hours').onRun((con
         const response = await fetch(
             `https://${functions.config().shopify.key}:${
                 functions.config().shopify.password
-            }@carbonforest.myshopify.com/admin/api/2021-01/customers.json`
+            }@carbonforest.myshopify.com/admin/api/2021-01/customers.json?limit=250`
         );
-        const shopifyCustomers = await response.json();
+        const shopifyCustomers = response.json();
 
         for (let customer of shopifyCustomers.customers) {
             treeCount = updateCount(treeCount, customer.total_spent, customer.orders_count);
         }
-
+        console.log("treeCount**", treeCount);
         await db.collection('treeCount').doc('current').update({
             total: treeCount,
         });
@@ -27,7 +27,7 @@ exports.updateTreeCount = functions.pubsub.schedule('every 24 hours').onRun((con
 });
 
 function updateCount(treeCount, totalSpend, ordersCount) {
-    const productCost = totalSpend / ordersCount;
+    const productCost = parseFloat(totalSpend) / parseFloat(ordersCount);
 
     if (productCost >= 30) {
         treeCount += 11;
