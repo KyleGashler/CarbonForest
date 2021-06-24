@@ -6,7 +6,7 @@ exports.updateTreeCount = functions.pubsub.schedule('every 24 hours').onRun((con
     const db = admin.firestore();
 
     const doIt = async () => {
-        let treeCount = 2500;
+        let treeCount = 3000;
         const response = await fetch(
             `https://${functions.config().shopify.key}:${
                 functions.config().shopify.password
@@ -17,7 +17,7 @@ exports.updateTreeCount = functions.pubsub.schedule('every 24 hours').onRun((con
         for (let customer of shopifyCustomers.customers) {
             treeCount = updateCount(treeCount, customer.total_spent, customer.orders_count);
         }
-        console.log("treeCount**", treeCount);
+        console.log('treeCount**', treeCount);
         await db.collection('treeCount').doc('current').update({
             total: treeCount,
         });
