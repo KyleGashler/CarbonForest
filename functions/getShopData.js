@@ -30,7 +30,7 @@ exports.getShopData = functions.https.onRequest(async (req, res) => {
         const response = await fetch(
             `https://${functions.config().shopify.key}:${
                 functions.config().shopify.password
-            }@carbonforest.myshopify.com/admin/api/2021-01/customers.json?limit=250`
+            }@carbonforest.myshopify.com/admin/api/2021-04/customers.json?limit=250`
         );
         const shopifyCustomers = await response.json();
         let retVal = {};
@@ -47,22 +47,21 @@ exports.getShopData = functions.https.onRequest(async (req, res) => {
                     }
 
                     if (customer.last_order_id) {
-                        const orderDetailRes = await fetch(
-                            `https://${functions.config().shopify.key}:${
-                                functions.config().shopify.password
-                            }@carbonforest.myshopify.com/admin/api/2021-01/orders/${
-                                customer.last_order_id
-                            }.json?fields=current_subtotal_price,created_at`
-                        );
-                        const orderDetail = await orderDetailRes.json();
-                        const orderTotal = parseFloat(orderDetail.current_subtotal_price);
+                        try {
+                            const orderListResponse = await fetch(
+                                `https://${functions.config().shopify.key}:${
+                                    functions.config().shopify.password
+                                }@carbonforest.myshopify.com/admin/api/2021-04/customers/${
+                                    customer.id
+                                }/orders.json`
+                            );
+                            const orderList = await orderListResponse.json();
+                            const { product, treeCount } = clacTreeCount(orderList.orders);
 
-                        if (orderTotal >= 30) {
-                            retVal.product = 5;
-                        } else if (orderTotal >= 16) {
-                            retVal.product = 10;
-                        } else {
-                            retVal.product = 30;
+                            retVal.product = product;
+                            retVal.treeCount = treeCount;
+                        } catch (err) {
+                            console.log('error**', err);
                         }
                     } else {
                         retVal.product = 0;
@@ -87,6 +86,35 @@ exports.getShopData = functions.https.onRequest(async (req, res) => {
         res.json({ ...retVal });
     });
 });
+
+function clacTreeCount(orders) {
+    let treeCount = 0;
+    let product;
+
+    orders.forEach((order) => {
+        if (order.line_items) {
+            order.line_items.forEach((lineItem) => {
+                if (
+                    lineItem.product_id === 5985588871362 ||
+                    lineItem.name === '30 Years To Carbon Free'
+                ) {
+                    treeCount += 2;
+                    product = 30;
+                } else if (
+                    lineItem.product_id === 5985587167426 ||
+                    lineItem.name === '10 Years To Carbon Free'
+                ) {
+                    treeCount += 6;
+                    product = 10;
+                } else {
+                    treeCount += 11;
+                    product = 5;
+                }
+            });
+        }
+    });
+    return { product, treeCount };
+}
 
 function findTreeLocation(state) {
     try {
