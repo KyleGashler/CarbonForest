@@ -84,7 +84,7 @@ const useStyles = makeStyles({
 
 export default function FirstPannel(props) {
     const classes = useStyles();
-    let treesPlanted = calcTrees(props.customer.created_at, props.customer.product);
+    let treesPlanted = props.customer.treeCount
     treesPlanted = Math.ceil(treesPlanted);
     const percentageOfProgress = ((treesPlanted / 680) * 100).toFixed(0);
 

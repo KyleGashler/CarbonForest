@@ -56,7 +56,11 @@ exports.getShopData = functions.https.onRequest(async (req, res) => {
                                 }/orders.json`
                             );
                             const orderList = await orderListResponse.json();
-                            const { product, treeCount } = clacTreeCount(orderList.orders);
+                            let { product, treeCount } = clacTreeCount(orderList.orders);
+                            
+                            if (dataFromFb && dataFromFb.migrated_trees) {
+                                treeCount += parseInt(dataFromFb.migrated_trees);
+                            }
 
                             retVal.product = product;
                             retVal.treeCount = treeCount;
