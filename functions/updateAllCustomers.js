@@ -1,82 +1,48 @@
 const functions = require('firebase-functions');
-const cors = require('cors');
 const admin = require('firebase-admin');
 const fetch = require('node-fetch');
 
-admin.initializeApp();
-
-exports.getShopData = functions.https.onRequest(async (req, res) => {
-    const custEmail = req.query.email.trim().toLowerCase();
+exports.updateAllCustomers = functions.pubsub.schedule('every 24 hours').onRun((context) => {
     const db = admin.firestore();
-    const userSnapshot = await db.collection('users').get();
-    let dataFromFb;
-    let treeCountTotal = 0;
 
-    const treeCount = db.collection('treeCount').doc('current');
-    const doc = await treeCount.get();
-    if (!doc.exists) {
-        console.log('No such document!');
-    } else {
-        treeCountTotal = doc.data().total;
-    }
-
-    userSnapshot.forEach((doc) => {
-        if (doc.id.toLowerCase() === custEmail) {
-            dataFromFb = doc.data();
-        }
-    });
-
-    return cors()(req, res, async () => {
+    const doIt = async () => {
         const customers = await shopifyCustomers();
-        let retVal = {};
 
-        retVal.treeCountTotal = treeCountTotal;
+        for (let customer of customers.customers) {
+            const customerEmail = customer.email.trim().toLowerCase();
+            let treeLocation = '';
 
-        if (customers.customers) {
-            retVal.customerCount = customers.customers.length;
+            if (customer?.addresses.length > 0) {
+                treeLocation = treeLocator(customer.addresses[0].province);
+            }
 
-            for (let customer of customers.customers) {
-                if (customer.email.trim().toLowerCase() === custEmail) {
-                    if (customer.addresses.length > 0) {
-                        retVal.treeLocation = treeLocator(customer.addresses[0].province);
-                    }
+            try {
+                const orderList = await customerOrders(customer.id);
+                const userFBRec = db.collection('users').doc(customerEmail);
+                let { product, treeCount } = clacTreeCount(orderList.orders);
 
-                    if (customer.last_order_id) {
-                        try {
-                            const orderList = await customerOrders(customer.id);
-                            let { product, treeCount } = clacTreeCount(orderList.orders);
-
-                            if (dataFromFb && dataFromFb.migrated_trees) {
-                                treeCount += parseInt(dataFromFb.migrated_trees);
-                            }
-
-                            retVal.product = product;
-                            retVal.treeCount = treeCount;
-                        } catch (err) {
-                            console.log('error**', err);
-                        }
-                    } else {
-                        retVal.product = 0;
-                    }
-
-                    retVal.first_name = customer.first_name;
-                    retVal.created_at = customer.created_at;
-                    retVal.email = customer.email;
-
-                    break;
-                } else {
-                    retVal.noShopifyCustomerFound = true;
+                if (userFBRec && userFBRec.migrated_trees) {
+                    treeCount += parseInt(userFBRec.migrated_trees);
                 }
+
+                let offsetPercentage = ((treeCount / 680) * 100).toFixed(0);
+
+                await db.collection('users').doc(customerEmail).update({
+                    product,
+                    tree_count: treeCount,
+                    tree_location: treeLocation,
+                    email: customer.email,
+                    first_name: customer.first_name,
+                    shopify_id: customer.id,
+                    offset_percentage: offsetPercentage,
+                });
+            } catch (err) {
+                console.log(`Failure on customer ${customerEmail}`, err);
             }
         }
+    };
 
-        if (dataFromFb && dataFromFb.created_date) {
-            retVal.product = dataFromFb.product;
-            retVal.created_at = dataFromFb.created_date;
-        }
-
-        res.json({ ...retVal });
-    });
+    return doIt();
 });
 
 const clacTreeCount = (orders) => {

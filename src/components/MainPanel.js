@@ -7,8 +7,6 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import backVid from '../media/heroVid.mp4';
 import mobileVid from '../media/mobileVid.mp4';
 
-import calcTrees from '../utils/calcTrees';
-
 const useStyles = makeStyles({
     top: {
         paddingTop: '100px',
@@ -84,7 +82,7 @@ const useStyles = makeStyles({
 
 export default function FirstPannel(props) {
     const classes = useStyles();
-    let treesPlanted = props.customer.treeCount
+    let treesPlanted = props.customer.treeCount;
     treesPlanted = Math.ceil(treesPlanted);
     const percentageOfProgress = ((treesPlanted / 680) * 100).toFixed(0);
 
