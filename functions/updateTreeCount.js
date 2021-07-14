@@ -12,8 +12,11 @@ exports.updateTreeCount = functions.pubsub.schedule('every 24 hours').onRun((con
         for (let customer of customers.customers) {
             treeCount = updateCount(treeCount, customer.total_spent, customer.orders_count);
         }
-        await db.collection('treeCount').doc('current').update({
+        await db.collection('company_metrics').doc('tree_count').update({
             total: treeCount,
+        });
+        await db.collection('company_metrics').doc('user_count').update({
+            total: customers.length,
         });
     };
 

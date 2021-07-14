@@ -18,24 +18,71 @@ exports.updateAllCustomers = functions.pubsub.schedule('every 24 hours').onRun((
 
             try {
                 const orderList = await customerOrders(customer.id);
-                const userFBRec = db.collection('users').doc(customerEmail);
                 let { product, treeCount } = clacTreeCount(orderList.orders);
+                const userRef = db.collection('users').doc(customerEmail);
+                const doc = await userRef.get();
+                let userFBRec;
 
-                if (userFBRec && userFBRec.migrated_trees) {
+                if (!doc.exists) {
+                    console.log(`No such document! for ${customerEmail}`);
+                } else {
+                    userFBRec = doc.data();
+                }
+
+                if (userFBRec?.migrated_trees) {
                     treeCount += parseInt(userFBRec.migrated_trees);
                 }
 
                 let offsetPercentage = ((treeCount / 680) * 100).toFixed(0);
 
-                await db.collection('users').doc(customerEmail).update({
-                    product,
-                    tree_count: treeCount,
-                    tree_location: treeLocation,
-                    email: customer.email,
-                    first_name: customer.first_name,
-                    shopify_id: customer.id,
-                    offset_percentage: offsetPercentage,
+                if (product === 0) {
+                    product = userFBRec?.product;
+                }
+
+                const hubspotUrl = `https://api.hubapi.com/contacts/v1/contact/email/${customerEmail}/profile?hapikey=b07c8afe-6d43-483e-845b-168ac794af97`;
+                const hubspotPayload = {
+                    properties: [
+                        {
+                            property: 'treecount',
+                            value: treeCount,
+                        },
+                        {
+                            property: 'product',
+                            value: product,
+                        },
+                        {
+                            property: 'carbon_offset_percentage',
+                            value: offsetPercentage,
+                        },
+                    ],
+                };
+
+                const response = await fetch(hubspotUrl, {
+                    method: 'POST',
+                    mode: 'cors', // no-cors, *cors, same-origin
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    redirect: 'follow',
+                    referrerPolicy: 'no-referrer',
+                    body: JSON.stringify(hubspotPayload),
                 });
+
+                if (product) {
+                    await db.collection('users').doc(customerEmail).set(
+                        {
+                            product: product,
+                            tree_count: treeCount,
+                            tree_location: treeLocation,
+                            email: customer.email,
+                            first_name: customer.first_name,
+                            shopify_id: customer.id,
+                            offset_percentage: offsetPercentage,
+                        },
+                        { merge: true }
+                    );
+                }
             } catch (err) {
                 console.log(`Failure on customer ${customerEmail}`, err);
             }
@@ -47,7 +94,7 @@ exports.updateAllCustomers = functions.pubsub.schedule('every 24 hours').onRun((
 
 const clacTreeCount = (orders) => {
     let treeCount = 0;
-    let product;
+    let product = 0;
 
     orders.forEach((order) => {
         if (order.line_items) {
