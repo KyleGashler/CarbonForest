@@ -1,11 +1,14 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
-const fetch = require('node-fetch');
+
+const { updateHubspot } = require('./clients/hubspot');
+const { customerOrders, shopifyCustomers } = require('./clients/shopify');
+const { treeLocator } = require('./utils/treeLocator');
+const { clacTreeCount } = require('./utils/getTreeCount');
 
 exports.updateAllCustomers = functions.pubsub.schedule('every 24 hours').onRun((context) => {
     const db = admin.firestore();
-
-    const doIt = async () => {
+    return (async () => {
         const customers = await shopifyCustomers();
 
         for (let customer of customers.customers) {
@@ -38,36 +41,7 @@ exports.updateAllCustomers = functions.pubsub.schedule('every 24 hours').onRun((
                 if (product === 0) {
                     product = userFBRec?.product;
                 }
-
-                const hubspotUrl = `https://api.hubapi.com/contacts/v1/contact/email/${customerEmail}/profile?hapikey=b07c8afe-6d43-483e-845b-168ac794af97`;
-                const hubspotPayload = {
-                    properties: [
-                        {
-                            property: 'treecount',
-                            value: treeCount,
-                        },
-                        {
-                            property: 'product',
-                            value: product,
-                        },
-                        {
-                            property: 'carbon_offset_percentage',
-                            value: offsetPercentage,
-                        },
-                    ],
-                };
-
-                const response = await fetch(hubspotUrl, {
-                    method: 'POST',
-                    mode: 'cors', // no-cors, *cors, same-origin
-                    cache: 'no-cache',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    redirect: 'follow',
-                    referrerPolicy: 'no-referrer',
-                    body: JSON.stringify(hubspotPayload),
-                });
+                await updateHubspot(customerEmail, treeCount, product, offsetPercentage);
 
                 if (product) {
                     await db.collection('users').doc(customerEmail).set(
@@ -87,117 +61,5 @@ exports.updateAllCustomers = functions.pubsub.schedule('every 24 hours').onRun((
                 console.log(`Failure on customer ${customerEmail}`, err);
             }
         }
-    };
-
-    return doIt();
+    })();
 });
-
-const clacTreeCount = (orders) => {
-    let treeCount = 0;
-    let product = 0;
-
-    orders.forEach((order) => {
-        if (order.line_items) {
-            order.line_items.forEach((lineItem) => {
-                if (
-                    lineItem.product_id === 5985588871362 ||
-                    lineItem.name === '30 Years To Carbon Free'
-                ) {
-                    treeCount += 2;
-                    product = 30;
-                } else if (
-                    lineItem.product_id === 5985587167426 ||
-                    lineItem.name === '10 Years To Carbon Free'
-                ) {
-                    treeCount += 6;
-                    product = 10;
-                } else {
-                    treeCount += 11;
-                    product = 5;
-                }
-            });
-        }
-    });
-    return { product, treeCount };
-};
-
-const treeLocator = (state) => {
-    try {
-        let location = treeLocationMap[state.toLowerCase()];
-        if (!location) location = 'California';
-        return location;
-    } catch (e) {
-        return 'California';
-    }
-};
-
-const treeLocationMap = {
-    alabama: 'Pennsylvania',
-    alaska: 'California',
-    arizona: 'California',
-    arkansas: 'Colorado',
-    california: 'California',
-    colorado: 'California',
-    connecticut: 'Pennsylvania',
-    delaware: 'Pennsylvania',
-    florida: 'Colorado',
-    georgia: 'Colorado',
-    hawaii: 'California',
-    idaho: 'California',
-    illinois: 'Colorado',
-    indiana: 'Colorado',
-    iowa: 'Colorado',
-    kansas: 'Colorado',
-    kentucky: 'Colorado',
-    louisiana: 'Colorado',
-    maine: 'Pennsylvania',
-    maryland: 'Pennsylvania',
-    massachusetts: 'Pennsylvania',
-    michigan: 'Colorado',
-    minnesota: 'Colorado',
-    mississippi: 'Colorado',
-    missouri: 'Colorado',
-    montana: 'California',
-    nebraska: 'Colorado',
-    nevada: 'California',
-    'new hampshire': 'Pennsylvania',
-    'new jersey': 'Pennsylvania',
-    'new mexico': 'California',
-    'new york': 'Pennsylvania',
-    'north carolina': 'Colorado',
-    'north dakota': 'Colorado',
-    ohio: 'Colorado',
-    oklahoma: 'Colorado',
-    oregon: 'California',
-    pennsylvania: 'Pennsylvania',
-    'rhode island': 'Pennsylvania',
-    'south carolina': 'Colorado',
-    'south dakota': 'Colorado',
-    tennessee: 'Colorado',
-    texas: 'Colorado',
-    utah: 'Colorado',
-    vermont: 'Pennsylvania',
-    virginia: 'Pennsylvania',
-    washington: 'California',
-    'west virginia': 'Colorado',
-    wisconsin: 'Colorado',
-    wyoming: 'Colorado',
-};
-
-const customerOrders = async (customerId) => {
-    const orderListResponse = await fetch(
-        `https://${functions.config().shopify.key}:${
-            functions.config().shopify.password
-        }@carbonforest.myshopify.com/admin/api/2021-04/customers/${customerId}/orders.json`
-    );
-    return await orderListResponse.json();
-};
-
-const shopifyCustomers = async () => {
-    const response = await fetch(
-        `https://${functions.config().shopify.key}:${
-            functions.config().shopify.password
-        }@carbonforest.myshopify.com/admin/api/2021-01/customers.json?limit=250`
-    );
-    return await response.json();
-};
