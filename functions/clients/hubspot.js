@@ -1,31 +1,31 @@
 const fetch = require('node-fetch');
 
-exports.updateHubspot = async (customerEmail, treeCount, product, offsetPercentage) => {
-    try{
+exports.updateHubspot = (customerEmail, treeCount, product, treeLocation) => {
+    try {
         const profileLink = `https://profile.carbonforest.org/?cust=${customerEmail}`;
-        const hubspotUrl = `https://api.hubapi.com/contacts/v1/contact/email/${customerEmail}/profile?hapikey=b07c8afe-6d43-483e-845b-168ac794af97`;
+        const hubspotUrl = `https://api.hubapi.com/contacts/v1/contact/email/${customerEmail}/profile?hapikey=01cedbcc-2865-4314-a088-3c1f74309b63`;
         const hubspotPayload = {
             properties: [
                 {
-                    property: 'treecount',
+                    property: 'total_trees_planted',
                     value: treeCount,
                 },
                 {
-                    property: 'product',
+                    property: 'number_of_trees_planted',
                     value: product,
                 },
                 {
-                    property: 'carbon_offset_percentage',
-                    value: offsetPercentage,
+                    property: 'profile_url',
+                    value: profileLink,
                 },
                 {
-                    property: 'profile_link',
-                    value: profileLink,
+                    property: 'tree_location',
+                    value: treeLocation,
                 },
             ],
         };
 
-        await fetch(hubspotUrl, {
+        fetch(hubspotUrl, {
             method: 'POST',
             mode: 'cors', // no-cors, *cors, same-origin
             cache: 'no-cache',
@@ -36,7 +36,7 @@ exports.updateHubspot = async (customerEmail, treeCount, product, offsetPercenta
             referrerPolicy: 'no-referrer',
             body: JSON.stringify(hubspotPayload),
         });
-    } catch(e){
-        console.log('hubspot request error: ',e);
+    } catch (e) {
+        console.log('hubspot request error: ', e);
     }
-}
+};

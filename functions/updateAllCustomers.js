@@ -24,13 +24,7 @@ exports.updateAllCustomers = functions.pubsub.schedule('every 24 hours').onRun((
                 let { product, treeCount } = clacTreeCount(orderList.orders);
                 const userRef = db.collection('users').doc(customerEmail);
                 const doc = await userRef.get();
-                let userFBRec;
-
-                if (!doc.exists) {
-                    console.log(`No such document! for ${customerEmail}`);
-                } else {
-                    userFBRec = doc.data();
-                }
+                let userFBRec = doc.data();
 
                 if (userFBRec?.migrated_trees) {
                     treeCount += parseInt(userFBRec.migrated_trees);
@@ -41,7 +35,7 @@ exports.updateAllCustomers = functions.pubsub.schedule('every 24 hours').onRun((
                 if (product === 0) {
                     product = userFBRec?.product;
                 }
-                await updateHubspot(customerEmail, treeCount, product, offsetPercentage);
+                updateHubspot(customerEmail, treeCount, product, treeLocation);
 
                 if (product) {
                     await db.collection('users').doc(customerEmail).set(
