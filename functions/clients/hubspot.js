@@ -1,6 +1,12 @@
 const fetch = require('node-fetch');
 
-exports.updateHubspot = (customerEmail, treeCount, treeLocation, treesPerMonth) => {
+exports.updateHubspot = (
+    customerEmail,
+    treeCount,
+    treeLocation,
+    treesPerMonth,
+    offsetPercentage
+) => {
     try {
         const profileLink = `https://profile.carbonforest.org/?cust=${customerEmail}`;
         const hubspotUrl = `https://api.hubapi.com/contacts/v1/contact/email/${customerEmail}/profile?hapikey=01cedbcc-2865-4314-a088-3c1f74309b63`;
@@ -21,6 +27,10 @@ exports.updateHubspot = (customerEmail, treeCount, treeLocation, treesPerMonth) 
                 {
                     property: 'tree_location',
                     value: treeLocation,
+                },
+                {
+                    property: 'percentage_of_carbon_footprint_v2',
+                    value: offsetPercentage,
                 },
             ],
         };

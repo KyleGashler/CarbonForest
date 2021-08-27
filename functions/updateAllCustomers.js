@@ -35,7 +35,13 @@ exports.updateAllCustomers = functions.pubsub.schedule('every 24 hours').onRun((
                 if (product === 0) {
                     product = userFBRec?.product;
                 }
-                updateHubspot(customerEmail, treeCount, treeLocation, treesPerMonth);
+                updateHubspot(
+                    customerEmail,
+                    treeCount,
+                    treeLocation,
+                    treesPerMonth,
+                    offsetPercentage
+                );
 
                 if (product) {
                     await db.collection('users').doc(customerEmail).set(
