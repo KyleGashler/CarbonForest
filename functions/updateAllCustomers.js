@@ -21,7 +21,7 @@ exports.updateAllCustomers = functions.pubsub.schedule('every 24 hours').onRun((
 
             try {
                 const orderList = await customerOrders(customer.id);
-                let { product, treeCount } = clacTreeCount(orderList.orders);
+                let { product, treeCount, treesPerMonth } = clacTreeCount(orderList.orders);
                 const userRef = db.collection('users').doc(customerEmail);
                 const doc = await userRef.get();
                 let userFBRec = doc.data();
@@ -35,7 +35,7 @@ exports.updateAllCustomers = functions.pubsub.schedule('every 24 hours').onRun((
                 if (product === 0) {
                     product = userFBRec?.product;
                 }
-                updateHubspot(customerEmail, treeCount, product, treeLocation);
+                updateHubspot(customerEmail, treeCount, treeLocation, treesPerMonth);
 
                 if (product) {
                     await db.collection('users').doc(customerEmail).set(
